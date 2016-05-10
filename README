@@ -1,0 +1,4 @@
+关于vim-airline
+1. 安装vim-airline 时要安装 Plugin 'vim-airline/vim-airline-themes' 主题设置才起作用
+2. 如果显示不正确需要安装字体,https://github.com/powerline/fonts.git 对于gvim要设置set guifont=,
+对于使用终端的要设置终端的字体才能正确的显示
