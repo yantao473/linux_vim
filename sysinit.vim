@@ -359,8 +359,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:airline#extensions#tabline#show_close_button = 1
 " let g:airline#extensions#tabline#close_symbol = 'X'
 
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#branch#empty_message = ''
+" let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#branch#empty_message = ''
 
 
 "设置切换Buffer快捷键"
