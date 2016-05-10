@@ -346,7 +346,8 @@ nnoremap <silent><leader>tl :TlistToggle<CR>
 "***************************end taglist******************************"
 
 "***************************start airline******************************"
-let g:airline_theme="luna" 
+" let g:airline_theme="luna" 
+let g:airline_theme="powerlineish" 
 
 "这个是安装字体后 必须设置此项" 
 let g:airline_powerline_fonts = 1   
@@ -355,6 +356,12 @@ let g:airline_powerline_fonts = 1
 "我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#tabline#show_close_button = 1
+" let g:airline#extensions#tabline#close_symbol = 'X'
+
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#empty_message = ''
+
 
 "设置切换Buffer快捷键"
 nnoremap <C-N> :bn<CR>
