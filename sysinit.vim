@@ -58,7 +58,7 @@ let &guicursor = &guicursor . ",a:blinkon0"
 """"""""""""""""""""""""""""""""""""""""""""""
 "set guifont
 " set guifont=Consolas:h15:cANSI
-set guifont=DejaVu\ Sans\ Mono\ Book:h13:cANSI
+" set guifont=DejaVu\ Sans\ Mono\ Book:h13:cANSI
 
 " delete utf-8 BOM 
 set nobomb
@@ -123,14 +123,14 @@ map <silent> <leader>nc :NERDTreeClose<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "BufExplorer
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0 " Do not show default help
-let g:bufExplorerShowRelativePath=1 " Show relative paths. 
-let g:bufExplorerSortBy='mru' " Sort by most recently used. 
-let g:bufExplorerSplitRight=0 " Split left. 
-let g:bufExplorerSplitVertical=1 " Split vertically. 
-let g:bufExplorerSplitVertSize = 30 " Split width 
-let g:bufExplorerUseCurrentWindow=1 " Open in new window. 
-autocmd BufWinEnter \[Buf\ List\] setl nonumber
+" let g:bufExplorerDefaultHelp=0 " Do not show default help
+" let g:bufExplorerShowRelativePath=1 " Show relative paths. 
+" let g:bufExplorerSortBy='mru' " Sort by most recently used. 
+" let g:bufExplorerSplitRight=0 " Split left. 
+" let g:bufExplorerSplitVertical=1 " Split vertically. 
+" let g:bufExplorerSplitVertSize = 30 " Split width 
+" let g:bufExplorerUseCurrentWindow=1 " Open in new window. 
+" autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileformats
@@ -181,10 +181,6 @@ set sm
 "How many tenths of a second to blink
 set mat=2
 
-""""""""""""""""""""""""""""""
-" Statusline
-""""""""""""""""""""""""""""""
-set laststatus=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Moving around and tabs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,15 +205,17 @@ set foldenable
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set shiftwidth=4
 set et
-set sw=4
+set tabstop=4
+set smarttab
 
-au FileType html,python,vim,javascript,c,php setl shiftwidth=4
-au FileType html,python,vim,java,c,javascript,php setl tabstop=4
-au FileType txt setl lbr
-au FileType txt setl tw=78
-autocmd FileType c,cpp :set cindent
 
+" au FileType html,python,php,perl,c,c++,javascript,txt,vim setl shiftwidth=4
+" au FileType html,python,php,perl,c,c++,javascript,txt,vim setl tabstop=4
+au FileType html,python,php,perl,c,c++,javascript,txt,vim setl lbr
+
+au FileType c,cpp :set cindent
 " Wrap lines
 set nowrap
 
@@ -245,8 +243,8 @@ endif
 """""""""""""""""""""""""""""""
 " Vim section
 """""""""""""""""""""""""""""""
-autocmd FileType vim set nofen
-autocmd FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
+" autocmd FileType vim set nofen
+" autocmd FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC
@@ -287,18 +285,19 @@ au filetype php map <F5> :call CheckPHPSyntax()<CR>
 au filetype php imap <F5> <ESC>:call CheckPHPSyntax()<CR>
 
 "************************ for neocomplcache  **********************"
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_auto_select = 1
-let g:neocomplcache_enable_quick_match = 1
-let g:neocomplcache_min_syntax_length = 2
+" let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_smart_case = 1
+" let g:neocomplcache_enable_auto_select = 1
+" let g:neocomplcache_enable_quick_match = 1
+" let g:neocomplcache_min_syntax_length = 2
 
-" Enable omni completion. 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS 
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete 
+" " Enable omni completion. 
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS 
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete 
 "************************ for neocomplcache  **********************"
+
 "***************************lookupfile******************************"
 let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
 let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
@@ -346,6 +345,7 @@ nnoremap <silent><leader>tl :TlistToggle<CR>
 "***************************end taglist******************************"
 
 "***************************start airline******************************"
+set laststatus=2
 " let g:airline_theme="luna" 
 let g:airline_theme="powerlineish" 
 
@@ -373,6 +373,81 @@ let g:airline#extensions#whitespace#symbol = '!'
 
 "***************************end airline******************************"
 
+"***************************start python******************************"
+let python_highlight_all=1
+let g:ycm_python_binary_path = '/usr/bin/python'
+"***************************end python******************************"
+
+"***************************start YCM******************************"
+"YouCompleteMe智能补全工具
+
+let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/vundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+" 不显示开启vim时检查ycm_extra_conf文件的信息
+let g:ycm_confirm_extra_conf = 0
+
+" 开启基于tag的补全，可以在这之后添加需要的标签路径
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+" 开启语义补全
+let g:ycm_seed_identifiers_with_syntax = 1
+
+"注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+
+" 输入第 2 个字符开始补全
+let g:ycm_min_num_of_chars_for_completion= 2
+
+" 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_cache_omnifunc=0
+
+"在注释输入中也能补全
+let g:ycm_complete_in_comments = 1
+
+"在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
+
+"定义快捷健补全
+let g:ycm_key_list_select_completion = ['<c-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-k>', '<Up>']
+" 设置在下面几种格式的文件上屏蔽ycm
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'nerdtree' : 1
+      \}
+
+"设置关健字触发补全
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.', ' ', '(', '[', '&'],
+  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+  \             're!\[.*\]\s'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+
+let g:ycm_cache_omnifunc = 1
+let g:ycm_use_ultisnips_completer = 1
+
+" 定义函数跟踪快捷健
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"***************************end YCM******************************"
+
+"***************************start python******************************"
+" let g:python_host_prog = '/usr/bin/python'
+" let g:loaded_python_provider = 1
+" let g:python_host_skip_check = 1
+"***************************end python******************************"
+
+" 标示多余的空白
+" au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" au bufread,bufnewfile *.py,*.pyw,*.c,*.cpp,*.js,*.css,*.vim,*.h,*.php match ExtraWhitespace /\s\+$/
+
 " install  git clone https://github.com/gmarik/Vundle.vim.git
 set rtp+=/usr/share/vim/vimfiles/vundle/Vundle.vim
 let path='/usr/share/vim/vimfiles/vundle'
@@ -387,11 +462,15 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'jlanzarotta/bufexplorer'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'lookupfile'
 Plugin 'pathogen.vim'
 Plugin 'taglist.vim'
-Plugin 'Shougo/neocomplcache'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'nvie/vim-flake8'
+" Plugin 'jlanzarotta/bufexplorer'
+" Plugin 'Shougo/neocomplcache'
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
