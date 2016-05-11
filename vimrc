@@ -450,8 +450,33 @@ let python_highlight_all=1
 let g:ycm_python_binary_path = '/usr/bin/python'
 "***************************end python******************************"
 
+"***************************start syntastic******************************"
+let g:systastic_python_checker="flake8,pep8,pylint"
+let g:systastic_python_checkers=["pyflakes"]
+let g:syntastic_check_on_open = 1
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+"set error or warning signs
+"let g:syntastic_error_symbol = '✗'
+"let g:syntastic_warning_symbol = '⚠'
+""whether to show balloons
+let g:syntastic_enable_balloons = 1
+"***************************end syntastic******************************"
+
 "***************************start YCM******************************"
-"YouCompleteMe智能补全工具
+"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+set completeopt=longest,menu
+
+let g:clang_auto_select=0
+
+"离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+"按回车键即选中当前项
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"  
 
 let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/vundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
@@ -480,8 +505,9 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 
 "定义快捷健补全
-let g:ycm_key_list_select_completion = ['<c-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<c-k>', '<Up>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+
 " 设置在下面几种格式的文件上屏蔽ycm
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
@@ -503,13 +529,13 @@ let g:ycm_semantic_triggers =  {
   \   'erlang' : [':'],
   \ }
 
-let g:ycm_cache_omnifunc = 1
-let g:ycm_use_ultisnips_completer = 1
-
 " 定义函数跟踪快捷健
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "***************************end YCM******************************"
 
+" 标示多余的空白
+" au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" au bufread,bufnewfile *.py,*.pyw,*.c,*.cpp,*.js,*.css,*.vim,*.h,*.php match ExtraWhitespace /\s\+$/
 
 " install  git clone https://github.com/gmarik/Vundle.vim.git
 set rtp+=/usr/share/vim/vimfiles/vundle/Vundle.vim
