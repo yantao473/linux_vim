@@ -100,7 +100,7 @@ let g:mapleader=","
 set ar
 
 "Set the mose enabled all the time
-set mouse=a
+set mouse=c
 
 "Fast edit vimrc
 function! SwitchToBuf(filename)

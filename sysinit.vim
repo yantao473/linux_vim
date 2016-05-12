@@ -75,6 +75,8 @@ filetype plugin indent on
 let mapleader=","
 let g:mapleader=","
 
+set mouse=c
+
 " Auto change directory
 " set autochdir
 
