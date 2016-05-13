@@ -294,12 +294,11 @@ au filetype php imap <F5> <ESC>:call CheckPHPSyntax()<CR>
 " let g:neocomplcache_min_syntax_length = 2
 
 " Enable omni completion. 
-set ofu=syntaxcomplete#Complete
-
-au FileType css setlocal omnifunc=csscomplete#CompleteCSS 
-au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
-au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
-au FileType php set omnifunc=phpcomplete#CompletePHP
+" set ofu=syntaxcomplete#Complete
+" au FileType css setlocal omnifunc=csscomplete#CompleteCSS 
+" au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
+" au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
+" au FileType php set omnifunc=phpcomplete#CompletePHP
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete 
 "************************ for neocomplcache  **********************"
 
@@ -341,6 +340,7 @@ nmap <silent> <leader>ll :LUBufs<cr>
 "映射LUWalk为,lw
 nmap <silent> <leader>lw :LUWalk<cr>
 "***************************lookupfile******************************"
+"
 "***************************start taglist******************************"
 let Tlist_Show_One_File=1
 let Tlist_WinWidth=20
