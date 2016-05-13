@@ -18,7 +18,14 @@ do
 
     # if [ ! -s $ctagfile ]
     # then
-        ctags  -R -h ".php"  -f $ctagfile  --regex-php="/^[ \t]*[(private|public|static)( \t)]*function[ \t]+([A-Za-z0-9_]+)[ \t]*\(/\1/f, function, functions/"  --regex-php="/^[ \t]*[(private| public|static)]+[ \t]+\$([A-Za-z0-9_]+)[ \t]*/\1/p, property, properties/" --regex-php="/^[ \t]*(const)[ \t]+([A-Za-z0-9_]+)[ \t]*/\2/d, const, constants/" --languages=php 
+        ctags \
+            -f $ctagfile\
+            -R -h ".php" \ 
+            --exclude="\.git|\.swp|\.swo|\.png|\.jpg|\.gif|" \
+            --regex-php="/^[ \t]*[(private|public|static)( \t)]*function[ \t]+([A-Za-z0-9_]+)[ \t]*\(/\1/f, function, functions/" \
+            --regex-php="/^[ \t]*[(private| public|static)]+[ \t]+\$([A-Za-z0-9_]+)[ \t]*/\1/p, property, properties/" \
+            --regex-php="/^[ \t]*(const)[ \t]+([A-Za-z0-9_]+)[ \t]*/\2/d, const, constants/" \
+            --languages=php 
     # fi
 
     cd -

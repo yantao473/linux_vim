@@ -293,10 +293,13 @@ au filetype php imap <F5> <ESC>:call CheckPHPSyntax()<CR>
 " let g:neocomplcache_enable_quick_match = 1
 " let g:neocomplcache_min_syntax_length = 2
 
-" " Enable omni completion. 
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS 
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
+" Enable omni completion. 
+set ofu=syntaxcomplete#Complete
+
+au FileType css setlocal omnifunc=csscomplete#CompleteCSS 
+au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
+au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
+au FileType php set omnifunc=phpcomplete#CompletePHP
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete 
 "************************ for neocomplcache  **********************"
 

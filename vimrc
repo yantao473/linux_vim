@@ -364,11 +364,14 @@ au filetype php imap <F5> <ESC>:call CheckPHPSyntax()<CR>
 " let g:neocomplcache_enable_quick_match = 1
 " let g:neocomplcache_min_syntax_length = 2
 
-" " Enable omni completion. 
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS 
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete 
+" Enable omni completion. 
+set ofu=syntaxcomplete#Complete
+
+au FileType css setlocal omnifunc=csscomplete#CompleteCSS 
+au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
+au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
+au FileType php setlocal omnifunc=phpcomplete#CompletePHP
+" au FileType python setlocal omnifunc=pythoncomplete#Complete 
 "************************ for neocomplcache  **********************"
 "
 "***************************lookupfile******************************"
@@ -469,8 +472,6 @@ let g:syntastic_enable_balloons = 1
 "***************************start YCM******************************"
 "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 set completeopt=longest,menu
-
-let g:clang_auto_select=2
 
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
