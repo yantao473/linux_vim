@@ -413,7 +413,6 @@ nmap <silent> <leader>lw :LUWalk<cr>
 "***************************lookupfile******************************"
 
 "***************************start taglist******************************"
-set tags += ./.tags
 let Tlist_Show_One_File=1
 let Tlist_WinWidth=20
 let Tlist_Exit_OnlyWindow=1
