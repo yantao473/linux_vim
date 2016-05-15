@@ -487,11 +487,11 @@ Plugin 'vim-scripts/matchit.zip'
 Plugin 'lookupfile'
 Plugin 'pathogen.vim'
 Plugin 'taglist.vim'
-Plugin 'scrooloose/syntastic'
+Plugin 'Shougo/neocomplcache'
+" Plugin 'scrooloose/syntastic'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'davidhalter/jedi-vim'
 " Plugin 'nvie/vim-flake8'
 " Plugin 'jlanzarotta/bufexplorer'
-Plugin 'Shougo/neocomplcache'
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
