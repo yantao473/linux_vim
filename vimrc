@@ -464,7 +464,7 @@ let g:ycm_python_binary_path = '/usr/bin/python'
 "let g:syntastic_error_symbol = '✗'
 "let g:syntastic_warning_symbol = '⚠'
 ""whether to show balloons
-let g:syntastic_enable_balloons = 1
+" let g:syntastic_enable_balloons = 1
 "***************************end syntastic******************************"
 
 "***************************start YCM******************************"
