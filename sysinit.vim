@@ -381,11 +381,12 @@ let g:airline#extensions#whitespace#symbol = '!'
 "***************************start python******************************"
 let python_highlight_all=1
 let g:ycm_python_binary_path = '/usr/bin/python'
+abbr pyhd #!/usr/bin/env python<CR># -*- coding: UTF-8 -*-<CR><CR><CR><esc>0
 "***************************end python******************************"
 
 "***************************start syntastic******************************"
 let g:systastic_python_checker="flake8,pep8,pylint"
-let g:systastic_python_checkers=["pyflakes", "flake8"]
+let g:systastic_python_checkers=["flake8","pyflakes"]
 let g:syntastic_check_on_open = 1
 " let g:syntastic_cpp_include_dirs = ['/usr/include/']
 " let g:syntastic_cpp_remove_include_errors = 1
@@ -440,6 +441,8 @@ let g:ycm_complete_in_strings = 1
 let g:ycm_key_list_previous_completion = ['<c-p>', '<up>']
 let g:ycm_key_list_select_completion = ['<c-n>', '<down>']
 
+let g:ycm_autoclose_preview_window_after_completion=1
+
 " 设置在下面几种格式的文件上屏蔽ycm
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
@@ -463,6 +466,15 @@ let g:ycm_semantic_triggers =  {
 
 " 定义函数跟踪快捷健
 nnoremap <leader>jd :ycmcompleter gotodefinitionelsedeclaration<cr>
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
 "***************************end YCM******************************"
 
 " 标示多余的空白
@@ -484,6 +496,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'lookupfile'
 Plugin 'pathogen.vim'
 Plugin 'taglist.vim'
+Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 " Plugin 'Shougo/neocomplcache'
