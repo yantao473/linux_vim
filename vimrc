@@ -409,13 +409,12 @@ nmap <silent> <leader>ll :LUBufs<cr>
 nmap <silent> <leader>lw :LUWalk<cr>
 "***************************lookupfile******************************"
 
-"***************************start taglist******************************"
-let Tlist_Show_One_File=1
-let Tlist_WinWidth=20
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Use_Right_Window=1
-nnoremap <silent><leader>tl :TlistToggle<CR>
-"***************************end taglist******************************"
+"***************************start tagbar******************************"
+let tagbar_ctags_bin='/usr/bin/ctags'
+let g:tagbar_autofocus = 1
+nnoremap <silent><leader>tb :Tagbar<CR>
+nnoremap <silent><leader>tc :TagbarClose<CR>
+"***************************end tagbar******************************"
 
 "***************************start airline******************************"
 " let g:airline_theme="luna" 
@@ -558,7 +557,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'lookupfile'
 Plugin 'pathogen.vim'
-Plugin 'taglist.vim' 
+Plugin 'majutsushi/tagbar' 
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'

@@ -340,14 +340,13 @@ nmap <silent> <leader>ll :LUBufs<cr>
 "映射LUWalk为,lw
 nmap <silent> <leader>lw :LUWalk<cr>
 "***************************lookupfile******************************"
-"
-"***************************start taglist******************************"
-let Tlist_Show_One_File=1
-let Tlist_WinWidth=20
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Use_Right_Window=1
-nnoremap <silent><leader>tl :TlistToggle<CR>
-"***************************end taglist******************************"
+
+"***************************start tagbar******************************"
+let tagbar_ctags_bin='/usr/bin/ctags'
+let g:tagbar_autofocus = 1
+nnoremap <silent><leader>tb :Tagbar<CR>
+nnoremap <silent><leader>tc :TagbarClose<CR>
+"***************************end tagbar******************************"
 
 "***************************start airline******************************"
 set laststatus=2
@@ -466,15 +465,6 @@ let g:ycm_semantic_triggers =  {
 
 " 定义函数跟踪快捷健
 nnoremap <leader>jd :ycmcompleter gotodefinitionelsedeclaration<cr>
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
 "***************************end YCM******************************"
 
 " 标示多余的空白
@@ -495,7 +485,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'lookupfile'
 Plugin 'pathogen.vim'
-Plugin 'taglist.vim'
+Plugin 'majutsushi/tagbar' 
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
