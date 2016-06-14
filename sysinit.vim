@@ -464,8 +464,27 @@ let g:ycm_semantic_triggers =  {
   \ }
 
 " 定义函数跟踪快捷健
-nnoremap <leader>jd :ycmcompleter gotodefinitionelsedeclaration<cr>
+nnoremap <silent> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "***************************end YCM******************************"
+
+"***************************start vim-go******************************"
+au BufRead,BufNewFile *.go set filetype=go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 0
+let g:go_play_open_browser = 0
+let g:go_bin_path = expand("/usr/local/gopath/bin")
+let g:go_bin_path = "/usr/local/go/bin"      "or give absolute path
+let g:go_get_update = 0
+"***************************end vim-go******************************"
 
 " 标示多余的空白
 " au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -488,6 +507,10 @@ Plugin 'pathogen.vim'
 Plugin 'majutsushi/tagbar' 
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'fatih/vim-go'
+Plugin 'dgryski/vim-godef'
+Plugin 'majutsushi/tagbar'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'Valloric/YouCompleteMe'
 " Plugin 'Shougo/neocomplcache'
 " Plugin 'davidhalter/jedi-vim'
