@@ -541,7 +541,6 @@ EOF
 "***************************end YCM******************************"
 
 "***************************start vim-go******************************"
-au BufRead,BufNewFile *.go set filetype=go
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
@@ -557,6 +556,10 @@ let g:go_play_open_browser = 0
 let g:go_bin_path = expand("/usr/local/gopath/bin")
 let g:go_bin_path = "/usr/local/go/bin"      "or give absolute path
 let g:go_get_update = 0
+
+au BufRead,BufNewFile *.go set filetype=go
+au BufWritePre *.go :GoFmt
+nnoremap <silent> <leader>gr :GoRun<cr>
 "***************************end vim-go******************************"
 
 " 标示多余的空白
@@ -577,7 +580,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'lookupfile'
 Plugin 'pathogen.vim'
-Plugin 'majutsushi/tagbar' 
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'fatih/vim-go'
