@@ -262,7 +262,6 @@ set nowb
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Enable folding, I find it very useful
 set foldenable
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -450,9 +449,14 @@ let g:ycm_python_binary_path = '/usr/bin/python'
 abbr pyhd #!/usr/bin/env python<CR># -*- coding: UTF-8 -*-<CR><CR><CR><esc>0
 "***************************end python******************************"
 
+"***************************start indentLine************************"
+let g:indentLine_color_term = 239
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+"***************************end indentLine************************"
+
 "***************************start syntastic******************************"
-let g:systastic_python_checker="flake8,pep8,pylint"
-let g:systastic_python_checkers=["flake8", "pyflakes"]
+let g:syntastic_python_checkers=['pep8']
 let g:syntastic_check_on_open = 1
 " let g:syntastic_cpp_include_dirs = ['/usr/include/']
 " let g:syntastic_cpp_remove_include_errors = 1
@@ -556,8 +560,8 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_autosave = 0
 let g:go_play_open_browser = 0
-let g:go_bin_path = expand("/usr/local/gopath/bin")
-let g:go_bin_path = "/usr/local/go/bin"      "or give absolute path
+let g:go_bin_path = expand("/bin")
+let g:go_bin_path = "/bin"      "or give absolute path
 let g:go_get_update = 0
 
 au BufRead,BufNewFile *.go set filetype=go
@@ -583,20 +587,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'lookupfile'
 Plugin 'pathogen.vim'
-Plugin 'vim-scripts/indentpython.vim'
+" Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'Yggdroot/indentLine'
 Plugin 'fatih/vim-go'
 Plugin 'dgryski/vim-godef'
 Plugin 'majutsushi/tagbar'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'Valloric/YouCompleteMe'
-
-" Plugin 'Shougo/neocomplcache'
-" Plugin 'davidhalter/jedi-vim'
-" Plugin 'L9'
-" Plugin 'Emmet.vim'
-" Plugin 'vim-scripts/matchit.zip'
-" Plugin 'nvie/vim-flake8'
-" Plugin 'jlanzarotta/bufexplorer'
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
