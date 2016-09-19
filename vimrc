@@ -531,6 +531,8 @@ let g:ycm_semantic_triggers =  {
   \   'ruby' : ['.', '::'],
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
+  \   'css': [ 're!^\s{4}', 're!:\s+'],
+  \   'html': [ '</' ],
   \ }
 
 " 定义函数跟踪快捷健
@@ -569,6 +571,10 @@ au BufWritePre *.go :GoFmt
 nnoremap <silent> <leader>gr :GoRun<cr>
 "***************************end vim-go******************************"
 
+"***************************start js syntax highlight******************************"
+let javascript_enable_domhtmlcss = 1
+"***************************end js syntax highlight******************************"
+
 " 标示多余的空白
 " au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " au bufread,bufnewfile *.py,*.pyw,*.c,*.cpp,*.js,*.css,*.vim,*.h,*.php match ExtraWhitespace /\s\+$/
@@ -579,21 +585,39 @@ let path='/usr/share/vim/vimfiles/vundle'
 call vundle#begin(path)
 
 Plugin 'gmarik/Vundle.vim'
+" base
 Plugin 'genutils'
-Plugin 'fugitive.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'lookupfile'
 Plugin 'pathogen.vim'
-" Plugin 'vim-scripts/indentpython.vim'
+Plugin 'lookupfile'
+
+"git 
+Plugin 'fugitive.vim'
+
+" statusline
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" syntax
 Plugin 'scrooloose/syntastic'
 Plugin 'Yggdroot/indentLine'
+
+" golang
 Plugin 'fatih/vim-go'
 Plugin 'dgryski/vim-godef'
-Plugin 'majutsushi/tagbar'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
+
+" html
+Plugin 'mattn/emmet-vim'
+" Plugin 'Raimondi/delimitMate'
+Plugin 'matchit.zip' 
+
+" javascript
+Plugin 'pangloss/vim-javascript'
+" Plugin 'marijnh/tern_for_vim'
+
+Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
