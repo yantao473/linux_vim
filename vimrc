@@ -531,8 +531,6 @@ let g:ycm_semantic_triggers =  {
   \   'ruby' : ['.', '::'],
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
-  \   'css': [ 're!^\s{4}', 're!:\s+'],
-  \   'html': [ '</' ],
   \ }
 
 " 定义函数跟踪快捷健
