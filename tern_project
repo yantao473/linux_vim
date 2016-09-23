@@ -1,0 +1,20 @@
+#!/bin/sh
+
+help()
+{
+    echo "Usage $0 path"
+    exit 0
+}
+
+[ $# -ne 1 ] && help
+
+echo -e "{\n \
+    \"libs\": [\n \
+        \"browser\",\n \
+        \"jquery\"\n \
+    ],\n \
+    \"plugins\": {\n \
+        \"node\": {},\n \
+        \"angular\": {}\n \
+    }
+}"> "$1/.tern-project"

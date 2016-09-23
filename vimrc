@@ -608,12 +608,12 @@ Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
 " html
 Plugin 'mattn/emmet-vim'
-" Plugin 'Raimondi/delimitMate'
 Plugin 'matchit.zip' 
 
 " javascript
 Plugin 'pangloss/vim-javascript'
-" Plugin 'marijnh/tern_for_vim'
+Plugin 'marijnh/tern_for_vim', {'do': 'npm install'}
+Plugin 'jslint.vim'
 
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'

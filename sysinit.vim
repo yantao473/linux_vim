@@ -502,27 +502,39 @@ let path='/usr/share/vim/vimfiles/vundle'
 call vundle#begin(path)
 
 Plugin 'gmarik/Vundle.vim'
+" base
 Plugin 'genutils'
-Plugin 'fugitive.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'lookupfile'
 Plugin 'pathogen.vim'
-Plugin 'vim-scripts/indentpython.vim'
+Plugin 'lookupfile'
+
+"git 
+Plugin 'fugitive.vim'
+
+" statusline
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" syntax
 Plugin 'scrooloose/syntastic'
+Plugin 'Yggdroot/indentLine'
+
+" golang
 Plugin 'fatih/vim-go'
 Plugin 'dgryski/vim-godef'
-Plugin 'majutsushi/tagbar'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
+
+" html
+Plugin 'mattn/emmet-vim'
+Plugin 'matchit.zip' 
+
+" javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'marijnh/tern_for_vim', {'do': 'npm install'}
+Plugin 'jslint.vim'
+
+Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
-" Plugin 'Shougo/neocomplcache'
-" Plugin 'davidhalter/jedi-vim'
-" Plugin 'L9'
-" Plugin 'vim-scripts/matchit.zip'
-" Plugin 'Emmet.vim'
-" Plugin 'nvie/vim-flake8'
-" Plugin 'jlanzarotta/bufexplorer'
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
