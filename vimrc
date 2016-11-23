@@ -571,7 +571,21 @@ nnoremap <silent> <leader>gr :GoRun<cr>
 
 "***************************start js syntax highlight******************************"
 let javascript_enable_domhtmlcss = 1
+let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
+autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
 "***************************end js syntax highlight******************************"
+
+"***************************tmux start******************************"
+let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 2
+
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+"***************************tmux end******************************"
 
 " 标示多余的空白
 " au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -612,8 +626,12 @@ Plugin 'matchit.zip'
 
 " javascript
 Plugin 'pangloss/vim-javascript'
-Plugin 'marijnh/tern_for_vim', {'do': 'npm install'}
+Plugin 'othree/javascript-libraries-syntax.vim' 
+Plugin 'burnettk/vim-angular'
 Plugin 'jslint.vim'
+
+" tmux
+Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'

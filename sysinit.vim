@@ -306,6 +306,24 @@ let g:neocomplcache_min_syntax_length = 2
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete 
 "************************ for neocomplcache  **********************"
 
+"***************************start js syntax highlight******************************"
+let javascript_enable_domhtmlcss = 1
+let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
+autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
+"***************************end js syntax highlight******************************"
+
+"***************************tmux start******************************"
+let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 2
+
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+"***************************tmux end******************************"
+
 "***************************lookupfile******************************"
 let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
 let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
@@ -387,9 +405,14 @@ let g:ycm_python_binary_path = '/usr/bin/python'
 abbr pyhd #!/usr/bin/env python<CR># -*- coding: UTF-8 -*-<CR><CR><CR><esc>0
 "***************************end python******************************"
 
+"***************************start indentLine************************"
+let g:indentLine_color_term = 239
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+"***************************end indentLine************************"
+
 "***************************start syntastic******************************"
-let g:systastic_python_checker="flake8,pep8,pylint"
-let g:systastic_python_checkers=["flake8","pyflakes"]
+let g:systastic_python_checkers=['pep8']
 let g:syntastic_check_on_open = 1
 " let g:syntastic_cpp_include_dirs = ['/usr/include/']
 " let g:syntastic_cpp_remove_include_errors = 1
@@ -500,7 +523,6 @@ nnoremap <silent> <leader>gr :GoRun<cr>
 set rtp+=/usr/share/vim/vimfiles/vundle/Vundle.vim
 let path='/usr/share/vim/vimfiles/vundle'
 call vundle#begin(path)
-
 Plugin 'gmarik/Vundle.vim'
 " base
 Plugin 'genutils'
@@ -531,10 +553,15 @@ Plugin 'matchit.zip'
 
 " javascript
 Plugin 'pangloss/vim-javascript'
-Plugin 'marijnh/tern_for_vim', {'do': 'npm install'}
+Plugin 'othree/javascript-libraries-syntax.vim' 
+Plugin 'burnettk/vim-angular'
 Plugin 'jslint.vim'
+
+" tmux
+Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
+
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
