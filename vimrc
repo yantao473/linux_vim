@@ -338,23 +338,24 @@ set pastetoggle=<F3>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Check PHP Syntax using makeprg
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CheckPHPSyntax()
-    if &filetype != 'php'
-        echohl WarningMsg | echo 'This is not a PHP file !' | echohl None
-        return
-    endif
-    setlocal makeprg=php\ -l\ -n\ -d\ html_errors=off\ %
-    setlocal errorformat=%m\ in\ %f\ on\ line\ %l
-    echohl WarningMsg | echo 'Syntax checking output:' | echohl None
-    if &modified == 1
-        silent write
-    endif
-    silent make
-    clist
-endfunction
+" function! CheckPHPSyntax()
+    " if &filetype != 'php'
+        " echohl WarningMsg | echo 'This is not a PHP file !' | echohl None
+        " return
+    " endif
+    " setlocal makeprg=php\ -l\ -n\ -d\ html_errors=off\ %
+    " setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+    " echohl WarningMsg | echo 'Syntax checking output:' | echohl None
+    " if &modified == 1
+        " silent write
+    " endif
+    " silent make
+    " clist
+" endfunction
 
-au filetype php map <F5> :call CheckPHPSyntax()<CR>
-au filetype php imap <F5> <ESC>:call CheckPHPSyntax()<CR>
+" au filetype php map <F5> :call CheckPHPSyntax()<CR>
+" au filetype php imap <F5> <ESC>:call CheckPHPSyntax()<CR>
+nmap <F9> :!/usr/bin/php %<CR>
 
 "************************ for neocomplcache  **********************"
 let g:neocomplcache_enable_at_startup = 1
@@ -456,17 +457,7 @@ let g:indentLine_enabled = 1
 "***************************end indentLine************************"
 
 "***************************start syntastic******************************"
-let g:syntastic_python_checkers=['pep8']
 let g:syntastic_check_on_open = 1
-" let g:syntastic_cpp_include_dirs = ['/usr/include/']
-" let g:syntastic_cpp_remove_include_errors = 1
-" let g:syntastic_cpp_check_header = 1
-" let g:syntastic_cpp_compiler = 'clang++'
-" let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
-"set error or warning signs
-"let g:syntastic_error_symbol = '✗'
-"let g:syntastic_warning_symbol = '⚠'
-""whether to show balloons
 let g:syntastic_enable_balloons = 1
 "***************************end syntastic******************************"
 
@@ -572,7 +563,6 @@ nnoremap <silent> <leader>gr :GoRun<cr>
 "***************************start js syntax highlight******************************"
 let javascript_enable_domhtmlcss = 1
 let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
-autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
 autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
 "***************************end js syntax highlight******************************"
 
