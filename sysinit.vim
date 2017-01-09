@@ -124,18 +124,6 @@ map <silent> <leader>ne :NERDTree<cr>
 map <silent> <leader>nc :NERDTreeClose<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"BufExplorer
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:bufExplorerDefaultHelp=0 " Do not show default help
-" let g:bufExplorerShowRelativePath=1 " Show relative paths. 
-" let g:bufExplorerSortBy='mru' " Sort by most recently used. 
-" let g:bufExplorerSplitRight=0 " Split left. 
-" let g:bufExplorerSplitVertical=1 " Split vertically. 
-" let g:bufExplorerSplitVertSize = 30 " Split width 
-" let g:bufExplorerUseCurrentWindow=1 " Open in new window. 
-" autocmd BufWinEnter \[Buf\ List\] setl nonumber
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileformats
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Favorite filetypes
@@ -269,26 +257,8 @@ noremap <silent> <leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
 "Paste toggle - when pasting something in, don't indent.
 set pastetoggle=<F3>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Check PHP Syntax using makeprg
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CheckPHPSyntax()
-    if &filetype != 'php'
-        echohl WarningMsg | echo 'This is not a PHP file !' | echohl None
-        return
-    endif
-    setlocal makeprg=php\ -l\ -n\ -d\ html_errors=off\ %
-    setlocal errorformat=%m\ in\ %f\ on\ line\ %l
-    echohl WarningMsg | echo 'Syntax checking output:' | echohl None
-    if &modified == 1
-        silent write
-    endif
-    silent make
-    clist
-endfunction
-
-au filetype php map <F5> :call CheckPHPSyntax()<CR>
-au filetype php imap <F5> <ESC>:call CheckPHPSyntax()<CR>
+" run php
+nmap <F9> :!/usr/bin/php %<CR>
 
 "************************ for neocomplcache  **********************"
 let g:neocomplcache_enable_at_startup = 1
@@ -296,14 +266,6 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_auto_select = 1
 let g:neocomplcache_enable_quick_match = 1
 let g:neocomplcache_min_syntax_length = 2
-
-" Enable omni completion. 
-" set ofu=syntaxcomplete#Complete
-" au FileType css setlocal omnifunc=csscomplete#CompleteCSS 
-" au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
-" au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
-" au FileType php set omnifunc=phpcomplete#CompletePHP
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete 
 "************************ for neocomplcache  **********************"
 
 "***************************start js syntax highlight******************************"
