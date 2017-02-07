@@ -468,7 +468,7 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 "***************************delimitMate end******************************"
 
 "***************************autoformater start******************************"
-let g:formatdef_harttle = '"astyle --style=attach --indent=spaces=4 --pad-oper --pad-comma --add-brackets --convert-tabs"'
+let g:formatdef_harttle = '"astyle --style=attach --indent=spaces=4 --pad-oper --add-brackets --convert-tabs"'
 let g:formatters_cpp = ['harttle']
 let g:formatters_c = ['harttle']
 let g:formatters_php = ['harttle']
