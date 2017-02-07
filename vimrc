@@ -93,14 +93,14 @@ filetype indent on
 let mapleader=","
 let g:mapleader=","
 
+"Set the mose enabled all the time
+set mouse=c
+
 " Auto change directory
 " set autochdir
 
 "Set auto read when a file is changed from the outside
 set ar
-
-"Set the mose enabled all the time
-set mouse=c
 
 "Fast edit vimrc
 function! SwitchToBuf(filename)
@@ -168,14 +168,11 @@ noremap <silent> <leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
 "Set 7 lines to the curors - when moving vertical..
 set so=7
 
-"Turn on WiLd menu
-set wmnu
+"The commandbar is 2 high
+set ch=2
 
 "Always show current position
 set ru
-
-"The commandbar is 2 high
-set ch=2
 
 "Show line number
 set nu
@@ -183,20 +180,17 @@ set nu
 "Do not redraw, when running macros.. lazyredraw
 set lz
 
-"Set backspace
-set backspace=eol,start,indent
-
 "set whichwrap+=<,>,h,l
 set ww+=<,>
 
 "Increach search
 set is
 
-"Highlight search things
-set hls
-
 "Set magic on
 set magic
+
+"Highlight search things
+set hls
 
 "No sound on errors.
 set noeb
@@ -209,10 +203,12 @@ set sm
 "How many tenths of a second to blink
 set mat=2
 
-""""""""""""""""""""""""""""""
-" Statusline
-""""""""""""""""""""""""""""""
-set laststatus=2
+"Turn on WiLd menu
+set wmnu
+
+"Set backspace
+set backspace=eol,start,indent
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Moving around and tabs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -245,18 +241,6 @@ set smarttab
 " au FileType html,python,php,perl,c,c++,javascript,txt,vim setl tabstop=4
 au FileType html,python,php,perl,c,c++,javascript,txt,vim setl lbr
 au FileType text setl textwidth=78
-
-""""""""""""""""""""""""""""""
-" Indent
-""""""""""""""""""""""""""""""
-" Auto indent
-" set ai
-
-" Smart indet
-" set si
-
-" C-style indeting
-" set cindent
 autocmd FileType c,cpp :set cindent
 
 " Wrap lines
@@ -281,10 +265,6 @@ endif
 " 高亮行
 " set cursorline
 " highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin configuration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""
 " Vim section
@@ -316,7 +296,24 @@ let g:neocomplcache_enable_auto_select = 1
 let g:neocomplcache_enable_quick_match = 1
 let g:neocomplcache_min_syntax_length = 2
 "************************ for neocomplcache  **********************"
-"
+
+"***************************start js syntax highlight******************************"
+let javascript_enable_domhtmlcss = 1
+let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
+autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
+"***************************end js syntax highlight******************************"
+
+"***************************tmux start******************************"
+let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 2
+
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+"***************************tmux end******************************"
+
 "***************************lookupfile******************************"
 let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
 let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
@@ -364,6 +361,7 @@ nnoremap <silent><leader>tc :TagbarClose<CR>
 "***************************end tagbar******************************"
 
 "***************************start airline******************************"
+set laststatus=2
 " let g:airline_theme="luna" 
 let g:airline_theme="powerlineish" 
 
@@ -401,6 +399,7 @@ let g:indentLine_enabled = 1
 "***************************end indentLine************************"
 
 "***************************start syntastic******************************"
+let g:systastic_python_checkers=['pep8']
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_balloons = 1
 "***************************end syntastic******************************"
@@ -504,28 +503,24 @@ au BufWritePre *.go :GoFmt
 nnoremap <silent> <leader>gr :GoRun<cr>
 "***************************end vim-go******************************"
 
-"***************************start js syntax highlight******************************"
-let javascript_enable_domhtmlcss = 1
-let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
-autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
-"***************************end js syntax highlight******************************"
+"***************************delimitMate start******************************"
+" for python docstring ", 特别有用
+au FileType python let b:delimitMate_nesting_quotes = ['"']
+" 关闭某些类型文件的自动补全
+"au FileType mail let b:delimitMate_autoclose = 0
+"***************************delimitMate end******************************"
 
-"***************************tmux start******************************"
-let g:tmux_navigator_no_mappings = 1
-let g:tmux_navigator_save_on_switch = 2
+"***************************autoformater start******************************"
+let g:formatdef_harttle = '"astyle --style=attach --indent=spaces=4 --pad-oper --pad-comma --add-brackets --convert-tabs"'
+let g:formatters_cpp = ['harttle']
+let g:formatters_c = ['harttle']
+let g:formatters_php = ['harttle']
+let g:formatter_yapf_style = 'pep8'
+noremap <F2> :Autoformat<CR>
+"***************************autoformater end******************************"
 
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
-"***************************tmux end******************************"
-
-" 标示多余的空白
-" au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-" au bufread,bufnewfile *.py,*.pyw,*.c,*.cpp,*.js,*.css,*.vim,*.h,*.php match ExtraWhitespace /\s\+$/
-
-" install  git clone https://github.com/gmarik/Vundle.vim.git
+"***************************vundle start**********************************"
+" install  git clmne https://github.com/gmarik/Vundle.vim.git
 set rtp+=/usr/share/vim/vimfiles/vundle/Vundle.vim
 let path='/usr/share/vim/vimfiles/vundle'
 call vundle#begin(path)
@@ -569,5 +564,13 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
+
+" brackets
+Plugin 'Raimondi/delimitMate'
+
+" formater
+Plugin 'Chiel92/vim-autoformat'
+
 call vundle#end()
+"***************************vundle end**********************************
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""

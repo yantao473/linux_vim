@@ -53,10 +53,6 @@ let &guicursor = &guicursor . ",a:blinkon0"
 
 
 """"""""""""""""""""""""""""""""""""""start config by yanqing4""""""""""""""""""""""""""
-colorscheme desert
-""""""""""""""""""""""""""""""""""""""""""""""
-"General
-""""""""""""""""""""""""""""""""""""""""""""""
 "set guifont
 " set guifont=Consolas:h15:cANSI
 " set guifont=DejaVu\ Sans\ Mono\ Book:h13:cANSI
@@ -201,12 +197,11 @@ set et
 set tabstop=4
 set smarttab
 
-
 " au FileType html,python,php,perl,c,c++,javascript,txt,vim setl shiftwidth=4
 " au FileType html,python,php,perl,c,c++,javascript,txt,vim setl tabstop=4
 au FileType html,python,php,perl,c,c++,javascript,txt,vim setl lbr
-
 au FileType c,cpp :set cindent
+
 " Wrap lines
 set nowrap
 
@@ -250,9 +245,6 @@ vmap <silent> <leader>lv :lv /<c-r>=<sid>GetVisualSelection()<cr>/ %<cr>:lw<cr>
 " Fast diff
 cmap @vd vertical diffsplit 
 set diffopt+=vertical
-
-"Remove the Windows ^M
-noremap <silent> <leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
 
 "Paste toggle - when pasting something in, don't indent.
 set pastetoggle=<F3>
@@ -376,15 +368,6 @@ let g:indentLine_enabled = 1
 "***************************start syntastic******************************"
 let g:systastic_python_checkers=['pep8']
 let g:syntastic_check_on_open = 1
-" let g:syntastic_cpp_include_dirs = ['/usr/include/']
-" let g:syntastic_cpp_remove_include_errors = 1
-" let g:syntastic_cpp_check_header = 1
-" let g:syntastic_cpp_compiler = 'clang++'
-" let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
-"set error or warning signs
-"let g:syntastic_error_symbol = '✗'
-"let g:syntastic_warning_symbol = '⚠'
-""whether to show balloons
 let g:syntastic_enable_balloons = 1
 "***************************end syntastic******************************"
 
@@ -477,10 +460,23 @@ au BufWritePre *.go :GoFmt
 nnoremap <silent> <leader>gr :GoRun<cr>
 "***************************end vim-go******************************"
 
-" 标示多余的空白
-" au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-" au bufread,bufnewfile *.py,*.pyw,*.c,*.cpp,*.js,*.css,*.vim,*.h,*.php match ExtraWhitespace /\s\+$/
+"***************************delimitMate start******************************"
+" for python docstring ", 特别有用
+au FileType python let b:delimitMate_nesting_quotes = ['"']
+" 关闭某些类型文件的自动补全
+"au FileType mail let b:delimitMate_autoclose = 0
+"***************************delimitMate end******************************"
 
+"***************************autoformater start******************************"
+let g:formatdef_harttle = '"astyle --style=attach --indent=spaces=4 --pad-oper --pad-comma --add-brackets --convert-tabs"'
+let g:formatters_cpp = ['harttle']
+let g:formatters_c = ['harttle']
+let g:formatters_php = ['harttle']
+let g:formatter_yapf_style = 'pep8'
+noremap <F2> :Autoformat<CR>
+"***************************autoformater end******************************"
+
+"***************************vundle start**********************************"
 " install  git clone https://github.com/gmarik/Vundle.vim.git
 set rtp+=/usr/share/vim/vimfiles/vundle/Vundle.vim
 let path='/usr/share/vim/vimfiles/vundle'
@@ -525,5 +521,12 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
 
+" brackets
+Plugin 'Raimondi/delimitMate'
+
+" formater
+Plugin 'Chiel92/vim-autoformat'
+
 call vundle#end()
+"***************************vundle end**********************************
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
