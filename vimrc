@@ -520,7 +520,9 @@ noremap <F2> :Autoformat<CR>
 "***************************autoformater end******************************"
 
 "***************************c.vim end******************************"
-let  g:C_UseTool_cmake = 'yes'
+let g:C_GlobalTemplateFile = '/usr/share/vim/vimfiles/vundle/c.vim/c-support/templates/Templates'
+let g:C_CodeSnippets = '/usr/share/vim/vimfiles/vundle/c.vim/c-support/codesnippets/'
+let g:C_UseTool_cmake = 'yes'
 "***************************c.vim end******************************"
 
 "***************************vundle start**********************************"
