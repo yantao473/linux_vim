@@ -3,4 +3,5 @@
 2. linux 终端如果显示不正确需要安装字体,先git clone https://github.com/powerline/fonts.git, 在linux系统的fonts目录中mkdir powerline_fonts
 将install.sh中脚本中linux 项的font_dir改为 font_dir='xxx/powerline_fonts'(xxx为你系统的字体目录), 当然可以直接将你喜欢的字体，直接copy到powerline_fonts目录中，
 避免安装多余的字体, 最后配置终端的字体
-3. windows下, 先用git下载字体,选一种喜欢的字体安装到系统中，然后设置,set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h13:cANSI (Dejavu Sans Mono for Powerline要替换为你安装的字体`)
+3. copy c.vim $VIM/plugin/
+4. windows下, 先用git下载字体,选一种喜欢的字体安装到系统中，然后设置,set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h13:cANSI (Dejavu Sans Mono for Powerline要替换为你安装的字体`)
