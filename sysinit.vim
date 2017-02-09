@@ -468,6 +468,7 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 "***************************delimitMate end******************************"
 
 "***************************autoformater start******************************"
+" http://astyle.sourceforge.net/astyle.html
 let g:formatdef_harttle = '"astyle --style=attach --indent=spaces=4 --pad-oper --add-brackets --convert-tabs"'
 let g:formatters_cpp = ['harttle']
 let g:formatters_c = ['harttle']
@@ -475,6 +476,10 @@ let g:formatters_php = ['harttle']
 let g:formatter_yapf_style = 'pep8'
 noremap <F2> :Autoformat<CR>
 "***************************autoformater end******************************"
+
+"***************************c.vim end******************************"
+let  g:C_UseTool_cmake = 'yes'
+"***************************c.vim end******************************"
 
 "***************************vundle start**********************************"
 " install  git clone https://github.com/gmarik/Vundle.vim.git
@@ -514,6 +519,10 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'othree/javascript-libraries-syntax.vim' 
 Plugin 'burnettk/vim-angular'
 Plugin 'jslint.vim'
+
+" c.vim
+Plugin 'a.vim'
+Plugin 'c.vim'
 
 " tmux
 Plugin 'christoomey/vim-tmux-navigator'

@@ -519,6 +519,10 @@ let g:formatter_yapf_style = 'pep8'
 noremap <F2> :Autoformat<CR>
 "***************************autoformater end******************************"
 
+"***************************c.vim end******************************"
+let  g:C_UseTool_cmake = 'yes'
+"***************************c.vim end******************************"
+
 "***************************vundle start**********************************"
 " install  git clmne https://github.com/gmarik/Vundle.vim.git
 set rtp+=/usr/share/vim/vimfiles/vundle/Vundle.vim
@@ -558,6 +562,10 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'othree/javascript-libraries-syntax.vim' 
 Plugin 'burnettk/vim-angular'
 Plugin 'jslint.vim'
+
+" c.vim
+Plugin 'a.vim'
+Plugin 'c.vim'
 
 " tmux
 Plugin 'christoomey/vim-tmux-navigator'
