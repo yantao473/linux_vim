@@ -362,8 +362,8 @@ nnoremap <silent><leader>tc :TagbarClose<CR>
 
 "***************************start airline******************************"
 set laststatus=2
-" let g:airline_theme="luna" 
-let g:airline_theme="powerlineish" 
+let g:airline_theme="luna" 
+" let g:airline_theme="powerlineish" 
 
 "这个是安装字体后 必须设置此项" 
 let g:airline_powerline_fonts = 1   
@@ -371,10 +371,11 @@ let g:airline_powerline_fonts = 1
 " 打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-" let g:airline#extensions#tabline#show_close_button = 1
-" let g:airline#extensions#tabline#close_symbol = 'X'
-" let g:airline#extensions#branch#enabled = 1
-" let g:airline#extensions#branch#empty_message = ''
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+ 
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#empty_message = ''
 
 "设置切换Buffer快捷键"
 nnoremap <C-N> :bn<CR>
@@ -542,11 +543,11 @@ Plugin 'lookupfile'
 Plugin 'fugitive.vim'
 
 " statusline
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 " syntax
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'Yggdroot/indentLine'
 
 " golang
@@ -559,9 +560,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'matchit.zip' 
 
 " javascript
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/javascript-libraries-syntax.vim' 
-Plugin 'burnettk/vim-angular'
+" Plugin 'pangloss/vim-javascript'
+" Plugin 'othree/javascript-libraries-syntax.vim' 
+" Plugin 'burnettk/vim-angular'
 Plugin 'jslint.vim'
 
 " tmux
