@@ -356,7 +356,7 @@ let g:airline#extensions#tabline#close_symbol = 'X'
 "***************************start python******************************"
 let python_highlight_all=1
 let g:ycm_python_binary_path = '/usr/bin/python'
-abbr pyhd #!/usr/bin/env python<CR># -*- coding: UTF-8 -*-<CR><CR><CR><esc>0
+abbr pyhd #!/usr/bin/env python<CR># -*- coding: utf-8 -*-<CR><CR><CR><esc>0
 "***************************end python******************************"
 
 "***************************start indentLine************************"
@@ -469,7 +469,7 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 "***************************autoformater start******************************"
 " http://astyle.sourceforge.net/astyle.html
-let g:formatdef_harttle = '"astyle --style=attach --indent=spaces=4 --pad-oper --add-brackets --convert-tabs"'
+let g:formatdef_harttle = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
 let g:formatters_cpp = ['harttle']
 let g:formatters_c = ['harttle']
 let g:formatters_php = ['harttle']
