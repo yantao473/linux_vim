@@ -512,7 +512,6 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 "***************************delimitMate end******************************"
 
 "***************************autoformater start******************************"
-" http://astyle.sourceforge.net/astyle.html
 let g:formatdef_harttle = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
 let g:formatters_cpp = ['harttle']
 let g:formatters_c = ['harttle']
