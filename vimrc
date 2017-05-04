@@ -299,8 +299,6 @@ let g:neocomplcache_min_syntax_length = 2
 
 "***************************start js syntax highlight******************************"
 let javascript_enable_domhtmlcss = 1
-let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
-autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
 "***************************end js syntax highlight******************************"
 
 "***************************tmux start******************************"
@@ -512,6 +510,7 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 "***************************delimitMate end******************************"
 
 "***************************autoformater start******************************"
+" http://astyle.sourceforge.net/astyle.html
 let g:formatdef_harttle = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
 let g:formatters_cpp = ['harttle']
 let g:formatters_c = ['harttle']
@@ -526,57 +525,118 @@ map <silent> <leader>rr :call C_Run()<cr>
 "***************************compile and debug end******************************"
 
 "***************************vundle start**********************************"
-" install  git clmne https://github.com/gmarik/Vundle.vim.git
-set rtp+=/usr/share/vim/vimfiles/vundle/Vundle.vim
-let path='/usr/share/vim/vimfiles/vundle'
-call vundle#begin(path)
+" install  git clone https://github.com/gmarik/Vundle.vim.git
+" set rtp+=/usr/share/vim/vimfiles/vundle/Vundle.vim
+" let path='/usr/share/vim/vimfiles/vundle'
+" call vundle#begin(path)
 
-Plugin 'gmarik/Vundle.vim'
+" Plugin 'gmarik/Vundle.vim'
+" " base
+" Plugin 'genutils'
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/nerdcommenter'
+" Plugin 'pathogen.vim'
+" Plugin 'lookupfile'
+
+" "git 
+" " Plugin 'fugitive.vim'
+
+" " statusline
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+
+" " syntax
+" Plugin 'vim-syntastic/syntastic'
+" Plugin 'Yggdroot/indentLine'
+
+" " golang
+" " Plugin 'fatih/vim-go'
+" " Plugin 'dgryski/vim-godef'
+" " Plugin 'nsf/gocode', {'rtp': 'vim/'}
+
+" " html
+" Plugin 'mattn/emmet-vim'
+" Plugin 'matchit.zip' 
+
+" " javascript
+" " Plugin 'pangloss/vim-javascript'
+" " Plugin 'othree/javascript-libraries-syntax.vim' 
+" " Plugin 'burnettk/vim-angular'
+" Plugin 'jslint.vim'
+
+" " tmux
+" Plugin 'christoomey/vim-tmux-navigator'
+
+" Plugin 'majutsushi/tagbar'
+" Plugin 'Valloric/YouCompleteMe'
+
+" " brackets
+" Plugin 'Raimondi/delimitMate'
+
+" " formater
+" Plugin 'Chiel92/vim-autoformat'
+
+" call vundle#end()
+"***************************vundle end**********************************
+
+"***************************plug start**********************************
+let g:plug_path='/usr/share/vim/vimfiles/plug/vim-plug'
+function! DoPlug()
+    if !isdirectory(g:plug_path . "/autoload")
+        call mkdir(g:plug_path ."/autoload", "p")
+        execute "!cp " .g:plug_path ."/plug.vim " . g:plug_path . "/autoload/plug.vim"  
+    endif
+endfunction
+
+" install git clone https://github.com/junegunn/vim-plug.git 
+set rtp+=/usr/share/vim/vimfiles/plug/vim-plug
+
+call plug#begin('/usr/share/vim/vimfiles/plug')
+Plug 'https://github.com/junegunn/vim-plug.git', { 'do': function('DoPlug') }
 " base
-Plugin 'genutils'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'pathogen.vim'
-Plugin 'lookupfile'
+Plug 'https://github.com/vim-scripts/genutils.git'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-pathogen'
+Plug 'https://github.com/vim-scripts/lookupfile.git'
 
 "git 
-Plugin 'fugitive.vim'
+" Plug 'fugitive.vim'
 
 " statusline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " syntax
-Plugin 'vim-syntastic/syntastic'
-Plugin 'Yggdroot/indentLine'
+Plug 'vim-syntastic/syntastic'
+Plug 'Yggdroot/indentLine'
 
 " golang
-Plugin 'fatih/vim-go'
-Plugin 'dgryski/vim-godef'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+" Plug 'fatih/vim-go'
+" Plug 'dgryski/vim-godef'
+" Plug 'nsf/gocode', {'rtp': 'vim/'}
 
 " html
-Plugin 'mattn/emmet-vim'
-Plugin 'matchit.zip' 
+Plug 'mattn/emmet-vim'
+Plug 'https://github.com/vim-scripts/matchit.zip.git' 
 
 " javascript
-" Plugin 'pangloss/vim-javascript'
-" Plugin 'othree/javascript-libraries-syntax.vim' 
-" Plugin 'burnettk/vim-angular'
-Plugin 'jslint.vim'
+Plug 'pangloss/vim-javascript'
+" Plug 'https://github.com/hallettj/jslint.vim.git'
 
 " tmux
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
-Plugin 'majutsushi/tagbar'
-Plugin 'Valloric/YouCompleteMe'
+Plug 'majutsushi/tagbar'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-com' }
 
 " brackets
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 
 " formater
-Plugin 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat'
+call plug#end()
+"***************************plug end**********************************
 
-call vundle#end()
-"***************************vundle end**********************************
+
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
