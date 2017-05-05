@@ -524,61 +524,6 @@ map <silent> <leader>rc :call C_Compile()<cr>
 map <silent> <leader>rr :call C_Run()<cr>
 "***************************compile and debug end******************************"
 
-"***************************vundle start**********************************"
-" install  git clone https://github.com/gmarik/Vundle.vim.git
-" set rtp+=/usr/share/vim/vimfiles/vundle/Vundle.vim
-" let path='/usr/share/vim/vimfiles/vundle'
-" call vundle#begin(path)
-
-" Plugin 'gmarik/Vundle.vim'
-" " base
-" Plugin 'genutils'
-" Plugin 'scrooloose/nerdtree'
-" Plugin 'scrooloose/nerdcommenter'
-" Plugin 'pathogen.vim'
-" Plugin 'lookupfile'
-
-" "git 
-" " Plugin 'fugitive.vim'
-
-" " statusline
-" Plugin 'vim-airline/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
-
-" " syntax
-" Plugin 'vim-syntastic/syntastic'
-" Plugin 'Yggdroot/indentLine'
-
-" " golang
-" " Plugin 'fatih/vim-go'
-" " Plugin 'dgryski/vim-godef'
-" " Plugin 'nsf/gocode', {'rtp': 'vim/'}
-
-" " html
-" Plugin 'mattn/emmet-vim'
-" Plugin 'matchit.zip' 
-
-" " javascript
-" " Plugin 'pangloss/vim-javascript'
-" " Plugin 'othree/javascript-libraries-syntax.vim' 
-" " Plugin 'burnettk/vim-angular'
-" Plugin 'jslint.vim'
-
-" " tmux
-" Plugin 'christoomey/vim-tmux-navigator'
-
-" Plugin 'majutsushi/tagbar'
-" Plugin 'Valloric/YouCompleteMe'
-
-" " brackets
-" Plugin 'Raimondi/delimitMate'
-
-" " formater
-" Plugin 'Chiel92/vim-autoformat'
-
-" call vundle#end()
-"***************************vundle end**********************************
-
 "***************************plug start**********************************
 let g:plug_path='/usr/share/vim/vimfiles/plug/vim-plug'
 function! DoPlug()
@@ -617,12 +562,12 @@ Plug 'Yggdroot/indentLine'
 " Plug 'nsf/gocode', {'rtp': 'vim/'}
 
 " html
-Plug 'mattn/emmet-vim'
-Plug 'https://github.com/vim-scripts/matchit.zip.git' 
+Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
+Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 
 " javascript
-Plug 'pangloss/vim-javascript'
-" Plug 'https://github.com/hallettj/jslint.vim.git'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
