@@ -443,9 +443,9 @@ set completeopt=longest,menu
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 "按回车键即选中当前项
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"  
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"  
 
-let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/vundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/plug/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 " 不显示开启vim时检查ycm_extra_conf文件的信息
 let g:ycm_confirm_extra_conf = 0
@@ -459,11 +459,11 @@ let g:ycm_seed_identifiers_with_syntax = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
+" 禁止缓存匹配项，每次都重新生成匹配项
+let g:ycm_cache_omnifunc = 0
+
 " 输入第 2 个字符开始补全
 let g:ycm_min_num_of_chars_for_completion= 2
-
-" 禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
 
 "在注释输入中也能补全
 let g:ycm_complete_in_comments = 1
@@ -471,8 +471,6 @@ let g:ycm_complete_in_comments = 1
 "在字符串输入中也能补全
 let g:ycm_complete_in_strings = 1
 
-"直接触发自动补全
-" let g:ycm_key_invoke_completion = '<C-Space>'
 
 
 "定义快捷健补全
