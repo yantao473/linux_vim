@@ -93,8 +93,16 @@ filetype indent on
 let mapleader=","
 let g:mapleader=","
 
-"Set the mose enabled all the time
-set mouse=c
+" Set the mouse enabled all the time
+" set mouse = a
+ 
+" disabled mouse
+set mouse-=a
+
+" change terminal title
+set title
+
+ 
 
 " Auto change directory
 " set autochdir
@@ -208,6 +216,15 @@ set wmnu
 
 "Set backspace
 set backspace=eol,start,indent
+
+" 防止tmux下vim的背景色显示异常
+" Refer: http://sunaku.github.io/vim-256color-bce.html
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Moving around and tabs
@@ -398,7 +415,7 @@ let g:indentLine_enabled = 1
 "***************************end indentLine************************"
 
 "***************************start syntastic******************************"
-let g:systastic_python_checkers=['pep8']
+let g:systastic_python_checkers=['pyflakes']
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_balloons = 1
 "***************************end syntastic******************************"
@@ -425,7 +442,7 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 
 "注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
 " 输入第 2 个字符开始补全
 let g:ycm_min_num_of_chars_for_completion= 2
@@ -438,6 +455,10 @@ let g:ycm_complete_in_comments = 1
 
 "在字符串输入中也能补全
 let g:ycm_complete_in_strings = 1
+
+"直接触发自动补全
+" let g:ycm_key_invoke_completion = '<C-Space>'
+
 
 "定义快捷健补全
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
@@ -468,16 +489,6 @@ let g:ycm_semantic_triggers =  {
 
 " 定义函数跟踪快捷健
 nnoremap <silent> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
 "***************************end YCM******************************"
 
 "***************************start vim-go******************************"
@@ -561,6 +572,8 @@ Plug 'Yggdroot/indentLine'
 " Plug 'dgryski/vim-godef'
 " Plug 'nsf/gocode', {'rtp': 'vim/'}
 
+" auto complete  html/xml
+Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
 " html
 Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
@@ -577,6 +590,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-
 
 " brackets
 Plug 'Raimondi/delimitMate'
+" 括号显示增强
+Plug 'kien/rainbow_parentheses.vim'
 
 " formater
 Plug 'Chiel92/vim-autoformat'
