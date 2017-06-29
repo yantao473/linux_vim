@@ -416,8 +416,23 @@ let g:indentLine_enabled = 1
 
 "***************************start syntastic******************************"
 let g:systastic_python_checkers=['pyflakes']
-let g:syntastic_check_on_open = 1
 let g:syntastic_enable_balloons = 1
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_enable_highlighting=1
+
+" to see error location list
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_jump = 0
+let g:syntastic_loc_list_height = 5
+
+" 禁止插件检查java
+" thanks to @marsqing, see https://github.com/wklken/k-vim/issues/164
+let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java'] }
 "***************************end syntastic******************************"
 
 "***************************start YCM******************************"
