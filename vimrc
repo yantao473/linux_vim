@@ -329,45 +329,6 @@ nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 "***************************tmux end******************************"
 
-"***************************lookupfile******************************"
-let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
-let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
-let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
-let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
-let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
-
-if filereadable("./.filenametags")                "设置tag文件的名字
-    let g:LookupFile_TagExpr = '"./.filenametags"'
-endif
-
-" lookup file with ignore case
-function! LookupFile_IgnoreCaseFunc(pattern)
-    let _tags = &tags
-    try
-        let &tags = eval(g:LookupFile_TagExpr)
-        let newpattern = '\c' . a:pattern
-        let tags = taglist(newpattern)
-    catch
-        echohl ErrorMsg | echo "Exception: " . v:exception | echohl NONE
-        return ""
-    finally
-        let &tags = _tags
-    endtry
-
-    " Show the matches for what is typed so far.
-    let files = map(tags, 'v:val["filename"]')
-    return files
-endfunction
-let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc' 
-
-"映射LookupFile为,lk
-nmap <silent> <leader>lk :LUTags<cr>
-"映射LUBufs为,ll
-nmap <silent> <leader>ll :LUBufs<cr>
-"映射LUWalk为,lw
-nmap <silent> <leader>lw :LUWalk<cr>
-"***************************lookupfile******************************"
-
 "***************************start tagbar******************************"
 let tagbar_ctags_bin='/usr/bin/ctags'
 let g:tagbar_autofocus = 1
@@ -403,8 +364,6 @@ let g:airline#extensions#whitespace#symbol = '!'
 "***************************end airline******************************"
 
 "***************************start python******************************"
-let python_highlight_all=1
-let g:ycm_python_binary_path = '/usr/bin/python'
 abbr pyhd #!/usr/bin/env python<CR># -*- coding: utf-8 -*-<CR><CR><CR><esc>0
 "***************************end python******************************"
 
@@ -414,26 +373,9 @@ let g:indentLine_char='┆'
 let g:indentLine_enabled = 1
 "***************************end indentLine************************"
 
-"***************************start syntastic******************************"
-let g:systastic_python_checkers=['pyflakes']
-let g:syntastic_enable_balloons = 1
-let g:syntastic_error_symbol='>>'
-let g:syntastic_warning_symbol='>'
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-let g:syntastic_enable_highlighting=1
-
-" to see error location list
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_auto_jump = 0
-let g:syntastic_loc_list_height = 5
-
-" 禁止插件检查java
-" thanks to @marsqing, see https://github.com/wklken/k-vim/issues/164
-let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java'] }
-"***************************end syntastic******************************"
+"***************************start fzf ************************"
+nnoremap <silent><leader>lk :Files<CR>
+"***************************end fzf************************"
 
 "***************************start YCM******************************"
 "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
@@ -460,7 +402,7 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
 " 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_cache_omnifunc = 0
+" let g:ycm_cache_omnifunc = 0
 
 " 输入第 2 个字符开始补全
 let g:ycm_min_num_of_chars_for_completion= 2
@@ -567,17 +509,13 @@ Plug 'https://github.com/vim-scripts/genutils.git'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-pathogen'
-Plug 'https://github.com/vim-scripts/lookupfile.git'
-
-"git 
-" Plug 'fugitive.vim'
 
 " statusline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " syntax
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'Yggdroot/indentLine'
 
 " golang
@@ -592,8 +530,8 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 
 " javascript
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+" Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -603,8 +541,13 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-
 
 " brackets
 Plug 'Raimondi/delimitMate'
+
 " 括号显示增强
 Plug 'kien/rainbow_parentheses.vim'
+
+" 文件搜索
+Plug 'junegunn/fzf', { 'dir': '/usr/share/vim/vimfiles/plug/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " formater
 Plug 'Chiel92/vim-autoformat'
