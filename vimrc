@@ -365,6 +365,15 @@ let g:airline#extensions#whitespace#symbol = '!'
 
 "***************************start python******************************"
 abbr pyhd #!/usr/bin/env python<CR># -*- coding: utf-8 -*-<CR><CR><CR><esc>0
+
+function! HeaderPython()
+    call setline(1, "#!/usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    normal G
+    normal 3o
+endfunction 
+autocmd BufNewFile *.py call HeaderPython()
+
 "***************************end python******************************"
 
 "***************************start indentLine************************"
@@ -481,7 +490,6 @@ let g:formatdef_harttle = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
 let g:formatters_cpp = ['harttle']
 let g:formatters_c = ['harttle']
 let g:formatters_php = ['harttle']
-let g:formatter_yapf_style = 'pep8'
 noremap <F2> :Autoformat<CR>
 "***************************autoformater end******************************"
 
@@ -546,7 +554,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'kien/rainbow_parentheses.vim'
 
 " 文件搜索
-Plug 'junegunn/fzf', { 'dir': '/usr/share/vim/vimfiles/plug/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '/usr/share/vim/vimfiles/plug/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " formater
