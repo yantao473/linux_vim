@@ -306,14 +306,6 @@ set pastetoggle=<F3>
 " run php
 nmap <F9> :!/usr/bin/php %<CR>
 
-"************************ for neocomplcache  **********************"
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_auto_select = 1
-let g:neocomplcache_enable_quick_match = 1
-let g:neocomplcache_min_syntax_length = 2
-"************************ for neocomplcache  **********************"
-
 "***************************start js syntax highlight******************************"
 let javascript_enable_domhtmlcss = 1
 "***************************end js syntax highlight******************************"
