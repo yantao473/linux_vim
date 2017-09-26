@@ -5,10 +5,7 @@ augroup Fedora
 augroup END
 
 """"""""""""""""""""""""""""""""""""""start config by yanqing4""""""""""""""""""""""""""
-"set guifont
-" set guifont=Consolas:h15:cANSI
-" set guifont=DejaVu\ Sans\ Mono\ Book:h13:cANSI
-
+colorscheme desert
 "Get out of VI's compatible mode.
 set nocp
 
@@ -42,8 +39,6 @@ set mouse-=a
 
 " change terminal title
 set title
-
-
 
 " Auto change directory
 " set autochdir
@@ -80,18 +75,6 @@ map <silent> <leader>ee :call SwitchToBuf("/etc/vimrc")<cr>
 
 "When _vimrc is edited, reload it
 autocmd! bufwritepost vimrc source /etc/vimrc
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERD_commener
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDSpaceDelims = 1
-let NERDCompactSexyComs=1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"NERD tree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <silent> <leader>ne :NERDTree<cr>
-map <silent> <leader>nc :NERDTreeClose<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileformats
@@ -204,35 +187,18 @@ autocmd FileType c,cpp :set cindent
 " Wrap lines
 set nowrap
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Complete
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " options
 set completeopt=menu
 set complete-=u
 set complete-=i
 
-" Enable syntax
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-                \ if &omnifunc == ""  |
-                \ setlocal omnifunc=syntaxcomplete#Complete |
-                \ endif
-endif
-
 " 高亮行
 " set cursorline
 " highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 
-"""""""""""""""""""""""""""""""
-" Vim section
-"""""""""""""""""""""""""""""""
-autocmd FileType vim set nofen
+" autocmd FileType vim set nofen
 autocmd FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MISC
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast grep
 nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 vmap <silent> <leader>lv :lv /<c-r>=<sid>GetVisualSelection()<cr>/ %<cr>:lw<cr>
@@ -246,6 +212,16 @@ set pastetoggle=<F3>
 
 " run php
 nmap <F9> :!/usr/bin/php %<CR>
+
+"**************************start nerd commener*************************************
+let NERDSpaceDelims = 1
+let NERDCompactSexyComs=1
+"**************************end nerd commener****************************************
+
+"****************************start nerd tree***********************************
+map <silent> <leader>ne :NERDTree<cr>
+map <silent> <leader>nc :NERDTreeClose<cr>
+"****************************end nerd tree*************************************
 
 "***************************start js syntax highlight******************************"
 let javascript_enable_domhtmlcss = 1
@@ -355,8 +331,6 @@ let g:ycm_complete_in_comments = 1
 
 "在字符串输入中也能补全
 let g:ycm_complete_in_strings = 1
-
-
 
 "定义快捷健补全
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
@@ -478,6 +452,13 @@ Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'majutsushi/tagbar'
+
+" TODO
+"***************************start deoplete******************************"
+" let g:deoplete#enable_at_startup = 1
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"***************************end deoplete*********************************"
+
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-com' }
 
 " brackets
