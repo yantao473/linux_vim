@@ -71,10 +71,10 @@ function! SwitchToBuf(filename)
         exec "tabnew " . a:filename
     endif
 endfunction
-map <silent> <leader>ee :call SwitchToBuf("/etc/vimrc")<cr>
+map <silent> <leader>ee :call SwitchToBuf("/usr/share/nvim/sysinit.vim")<cr>
 
 "When _vimrc is edited, reload it
-autocmd! bufwritepost vimrc source /etc/vimrc
+autocmd! bufwritepost sysinit.vim source /usr/share/nvim/sysinit.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileformats
@@ -274,7 +274,7 @@ let g:airline#extensions#whitespace#symbol = '!'
 
 "***************************start python******************************"
 " abbr pyhd #!/usr/bin/env python<CR># -*- coding: utf-8 -*-<CR><CR><CR><esc>0
-iabbr pm if __name__ == '__main__':<cr>pass
+iabbr main def main():<CR>pass<CR><CR><CR>if __name__ == '__main__':<CR>pass
 
 function! HeaderPython()
     call setline(1, "#!/usr/bin/env python")
@@ -418,12 +418,16 @@ endfunction
 set rtp+=g:plug_path
 
 call plug#begin(base_path)
-Plug 'https://github.com/junegunn/vim-plug.git', { 'do': function('DoPlug') }
+
 " base
-Plug 'https://github.com/vim-scripts/genutils.git'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}
-Plug 'scrooloose/nerdcommenter'
+Plug 'https://github.com/junegunn/vim-plug.git', { 'do': function('DoPlug') }
 Plug 'tpope/vim-pathogen'
+Plug 'https://github.com/vim-scripts/genutils.git'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}
+
+" git
+Plug 'tpope/vim-fugitive'
 
 " statusline
 Plug 'vim-airline/vim-airline'
