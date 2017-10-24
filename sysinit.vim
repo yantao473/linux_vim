@@ -274,7 +274,7 @@ let g:airline#extensions#whitespace#symbol = '!'
 
 "***************************start python******************************"
 " abbr pyhd #!/usr/bin/env python<CR># -*- coding: utf-8 -*-<CR><CR><CR><esc>0
-iabbr main def main():<CR>pass<CR><CR><CR>if __name__ == '__main__':<CR>pass
+iabbr main def main():<CR>pass<CR><CR><CR>if __name__ == '__main__':<CR>main()
 
 function! HeaderPython()
     call setline(1, "#!/usr/bin/env python")
@@ -394,10 +394,15 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 "***************************autoformater start******************************"
 " http://astyle.sourceforge.net/astyle.html
-let g:formatdef_harttle = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
-let g:formatters_cpp = ['harttle']
-let g:formatters_c = ['harttle']
-let g:formatters_php = ['harttle']
+let g:formatdef_cfamily = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
+let g:formatters_cpp = ['cfamily']
+let g:formatters_c = ['cfamily']
+let g:formatters_php = ['cfamily']
+
+" range format python
+let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
+let g:formatters_python = ['autopep8']
+
 noremap <F2> :Autoformat<CR>
 "***************************autoformater end******************************"
 
