@@ -141,18 +141,6 @@ map <silent> <leader>ee :call SwitchToBuf("/etc/vimrc")<cr>
 autocmd! bufwritepost vimrc source /etc/vimrc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERD_commener
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDSpaceDelims = 1
-let NERDCompactSexyComs=1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"NERD tree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <silent> <leader>ne :NERDTree<cr>
-map <silent> <leader>nc :NERDTreeClose<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileformats
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Favorite filetypes
@@ -239,8 +227,6 @@ map <silent> <leader>cd :cd %:p:h<cr>
 set nobk
 set nowb
 "set noswapfile
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -271,14 +257,6 @@ set completeopt=menu
 set complete-=u
 set complete-=i
 
-" Enable syntax
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-                \ if &omnifunc == ""  |
-                \ setlocal omnifunc=syntaxcomplete#Complete |
-                \ endif
-endif
-
 " 高亮行
 " set cursorline
 " highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
@@ -306,9 +284,11 @@ set pastetoggle=<F3>
 " run php
 nmap <F9> :!/usr/bin/php %<CR>
 
-"***************************start js syntax highlight******************************"
-let javascript_enable_domhtmlcss = 1
-"***************************end js syntax highlight******************************"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERD_commener
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let NERDSpaceDelims = 1
+let NERDCompactSexyComs=1
 
 "***************************tmux start******************************"
 let g:tmux_navigator_no_mappings = 1
@@ -320,13 +300,6 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 "***************************tmux end******************************"
-
-"***************************start tagbar******************************"
-let tagbar_ctags_bin='/usr/bin/ctags'
-let g:tagbar_autofocus = 1
-nnoremap <silent><leader>tb :Tagbar<CR>
-nnoremap <silent><leader>tc :TagbarClose<CR>
-"***************************end tagbar******************************"
 
 "***************************start airline******************************"
 set laststatus=2
@@ -374,101 +347,6 @@ let g:indentLine_char='┆'
 let g:indentLine_enabled = 1
 "***************************end indentLine************************"
 
-"***************************start fzf ************************"
-nnoremap <silent><leader>lk :Files<CR>
-"***************************end fzf************************"
-
-"***************************start YCM******************************"
-"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-set completeopt=longest,menu
-
-"离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-"按回车键即选中当前项
-" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"  
-
-let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/plug/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-
-" 不显示开启vim时检查ycm_extra_conf文件的信息
-let g:ycm_confirm_extra_conf = 0
-
-" 开启基于tag的补全，可以在这之后添加需要的标签路径
-let g:ycm_collect_identifiers_from_tags_files = 1
-
-" 开启语义补全
-let g:ycm_seed_identifiers_with_syntax = 1
-
-"注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-
-" 禁止缓存匹配项，每次都重新生成匹配项
-" let g:ycm_cache_omnifunc = 0
-
-" 输入第 2 个字符开始补全
-let g:ycm_min_num_of_chars_for_completion= 2
-
-"在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
-
-"在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
-
-
-
-"定义快捷健补全
-let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
-let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
-
-let g:ycm_autoclose_preview_window_after_completion=1
-
-" 设置在下面几种格式的文件上屏蔽ycm
-let g:ycm_filetype_blacklist = {
-      \ 'tagbar' : 1,
-      \ 'nerdtree' : 1
-      \}
-
-"设置关健字触发补全
-let g:ycm_semantic_triggers =  {
-  \   'c' : ['->', '.', ' ', '(', '[', '&'],
-  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-  \             're!\[.*\]\s'],
-  \   'ocaml' : ['.', '#'],
-  \   'cpp,objcpp' : ['->', '.', '::'],
-  \   'perl' : ['->'],
-  \   'php' : ['->', '::'],
-  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-  \   'ruby' : ['.', '::'],
-  \   'lua' : ['.', ':'],
-  \   'erlang' : [':'],
-  \ }
-
-" 定义函数跟踪快捷健
-nnoremap <silent> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"***************************end YCM******************************"
-
-"***************************start vim-go******************************"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_autosave = 0
-let g:go_play_open_browser = 0
-let g:go_bin_path = expand("/bin")
-let g:go_bin_path = "/bin"      "or give absolute path
-let g:go_get_update = 0
-
-au BufRead,BufNewFile *.go set filetype=go
-au BufWritePre *.go :GoFmt
-nnoremap <silent> <leader>gr :GoRun<cr>
-"***************************end vim-go******************************"
-
 "***************************delimitMate start******************************"
 " for python docstring ", 特别有用
 au FileType python let b:delimitMate_nesting_quotes = ['"']
@@ -478,10 +356,16 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 "***************************autoformater start******************************"
 " http://astyle.sourceforge.net/astyle.html
-let g:formatdef_harttle = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
-let g:formatters_cpp = ['harttle']
-let g:formatters_c = ['harttle']
-let g:formatters_php = ['harttle']
+" http://astyle.sourceforge.net/astyle.html
+let g:formatdef_cfamily = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
+let g:formatters_cpp = ['cfamily']
+let g:formatters_c = ['cfamily']
+let g:formatters_php = ['cfamily']
+
+" range format python
+let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline. ' --max-line-length=119'"
+let g:formatters_python = ['autopep8']
+
 noremap <F2> :Autoformat<CR>
 "***************************autoformater end******************************"
 
@@ -489,6 +373,10 @@ noremap <F2> :Autoformat<CR>
 map <silent> <leader>rc :call C_Compile()<cr>
 map <silent> <leader>rr :call C_Run()<cr>
 "***************************compile and debug end******************************"
+
+"***************************ale start******************************"
+let g:ale_python_flake8_args = '--max-line-length=120'
+"***************************ale end******************************"
 
 "***************************plug start**********************************
 let g:plug_path='/usr/share/vim/vimfiles/plug/vim-plug'
@@ -506,7 +394,6 @@ call plug#begin('/usr/share/vim/vimfiles/plug')
 Plug 'https://github.com/junegunn/vim-plug.git', { 'do': function('DoPlug') }
 " base
 Plug 'https://github.com/vim-scripts/genutils.git'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-pathogen'
 
@@ -518,26 +405,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'Yggdroot/indentLine'
 
-" golang
-" Plug 'fatih/vim-go'
-" Plug 'dgryski/vim-godef'
-" Plug 'nsf/gocode', {'rtp': 'vim/'}
-
 " auto complete  html/xml
 Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
-" html
-Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
-
-" javascript
-" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-" Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
-
-Plug 'majutsushi/tagbar'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-com' }
 
 " brackets
 Plug 'Raimondi/delimitMate'
@@ -545,14 +418,8 @@ Plug 'Raimondi/delimitMate'
 " 括号显示增强
 Plug 'kien/rainbow_parentheses.vim'
 
-" 文件搜索
-Plug 'junegunn/fzf', { 'dir': '/usr/share/vim/vimfiles/plug/fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
 " formater
 Plug 'Chiel92/vim-autoformat'
 call plug#end()
 "***************************plug end**********************************
-
-
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""

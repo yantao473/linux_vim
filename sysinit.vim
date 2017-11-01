@@ -400,16 +400,20 @@ let g:formatters_c = ['cfamily']
 let g:formatters_php = ['cfamily']
 
 " range format python
-let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
+let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline. ' --max-line-length=119'"
 let g:formatters_python = ['autopep8']
-
 noremap <F2> :Autoformat<CR>
 "***************************autoformater end******************************"
+
+"***************************ale start******************************"
+let g:ale_python_flake8_args = '--max-line-length=120'
+"***************************ale end******************************"
 
 "***************************compile and debug end******************************"
 map <silent> <leader>rc :call C_Compile()<cr>
 map <silent> <leader>rr :call C_Run()<cr>
 "***************************compile and debug end******************************"
+
 
 "***************************plug start**********************************
 let base_path = "/usr/share/nvim/runtime/plug/"
