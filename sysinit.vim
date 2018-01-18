@@ -1,7 +1,7 @@
 augroup Fedora
-    autocmd!
-    " RPM spec file template
-    autocmd BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
+  autocmd!
+  " RPM spec file template
+  autocmd BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
 augroup END
 
 """"""""""""""""""""""""""""""""""""""start config by yanqing4""""""""""""""""""""""""""
@@ -417,13 +417,24 @@ map <silent> <leader>rr :call C_Run()<cr>
 
 "***************************plug start**********************************
 let base_path = "/usr/share/nvim/runtime/plug/"
-let g:plug_path = base_path ."vim-plug"
+let g:plug_path = base_path . "vim-plug"
+let g:mvpath = g:plug_path .'/autoload/'
+
+
+" Note: install vim-plug if not present
+if empty(glob(base_path))
+    " install git clone https://github.com/junegunn/vim-plug.git
+     silent exe "!mkdir -p ". base_path
+     silent exe "!git clone https://github.com/junegunn/vim-plug.git " . g:plug_path 
+     silent exe "!mkdir -p ". g:mvpath
+     silent exe "!/bin/cp " . g:plug_path ."/plug.vim " . g:mvpath. '/plug.vim'
+     autocmd VimEnter * PlugInstall
+endif
 
 function! DoPlug()
-    execute "!cp " .g:plug_path ."/plug.vim /usr/share/nvim/runtime/autoload/plug.vim"
+    silent exe "!cp " . g:plug_path ."/plug.vim " . g:mvpath. '/plug.vim'
 endfunction
 
-" install git clone https://github.com/junegunn/vim-plug.git
 set rtp+=g:plug_path
 
 call plug#begin(base_path)
