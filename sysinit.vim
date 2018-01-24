@@ -1,7 +1,7 @@
 augroup Fedora
-  autocmd!
+  au!
   " RPM spec file template
-  autocmd BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
+  au BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
 augroup END
 
 """"""""""""""""""""""""""""""""""""""start config by yanqing4""""""""""""""""""""""""""
@@ -74,7 +74,7 @@ endfunction
 map <silent> <leader>ee :call SwitchToBuf("/usr/share/nvim/sysinit.vim")<cr>
 
 "When _vimrc is edited, reload it
-autocmd! bufwritepost sysinit.vim source /usr/share/nvim/sysinit.vim
+au! bufwritepost sysinit.vim source /usr/share/nvim/sysinit.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileformats
@@ -182,7 +182,7 @@ set smarttab
 " au FileType html,python,php,perl,c,c++,javascript,txt,vim setl tabstop=4
 au FileType html,python,php,perl,c,c++,javascript,txt,vim setl lbr
 au FileType text setl textwidth=78
-autocmd FileType c,cpp :set cindent
+au FileType c,cpp :set cindent
 
 " Wrap lines
 set nowrap
@@ -196,8 +196,8 @@ set complete-=i
 " set cursorline
 " highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 
-" autocmd FileType vim set nofen
-autocmd FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
+" au FileType vim set nofen
+au FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
 
 " Fast grep
 nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
@@ -274,7 +274,7 @@ let g:airline#extensions#whitespace#symbol = '!'
 
 "***************************start python******************************"
 " abbr pyhd #!/usr/bin/env python<CR># -*- coding: utf-8 -*-<CR><CR><CR><esc>0
-iabbr main def main():<CR>pass<CR><CR><CR>if __name__ == '__main__':<CR>main()
+au FileType python iabbr main def main():<CR>pass<CR><CR><CR>if __name__ == '__main__':<CR>main()
 
 function! HeaderPython()
     call setline(1, "#!/usr/bin/env python")
@@ -282,7 +282,7 @@ function! HeaderPython()
     normal G
     normal 3o
 endfunction
-autocmd BufNewFile *.py call HeaderPython()
+au BufNewFile *.py call HeaderPython()
 
 "***************************end python******************************"
 
@@ -301,7 +301,7 @@ nnoremap <silent><leader>lk :Files<CR>
 set completeopt=longest,menu
 
 "离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+au InsertLeave * if pumvisible() == 0|pclose|endif
 
 "按回车键即选中当前项
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
@@ -424,11 +424,11 @@ let g:mvpath = g:plug_path .'/autoload/'
 " Note: install vim-plug if not present
 if empty(glob(base_path))
     " install git clone https://github.com/junegunn/vim-plug.git
-     silent exe "!mkdir -p ". base_path
-     silent exe "!git clone https://github.com/junegunn/vim-plug.git " . g:plug_path 
-     silent exe "!mkdir -p ". g:mvpath
-     silent exe "!/bin/cp " . g:plug_path ."/plug.vim " . g:mvpath. '/plug.vim'
-     autocmd VimEnter * PlugInstall
+    silent exe "!mkdir -p ". base_path
+    silent exe "!git clone https://github.com/junegunn/vim-plug.git " . g:plug_path
+    silent exe "!mkdir -p ". g:mvpath
+    silent exe "!/bin/cp " . g:plug_path ."/plug.vim " . g:mvpath. '/plug.vim'
+    au VimEnter * PlugInstall
 endif
 
 function! DoPlug()
