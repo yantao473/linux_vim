@@ -407,6 +407,20 @@ noremap <F2> :Autoformat<CR>
 
 "***************************ale start******************************"
 let g:ale_python_flake8_args = '--max-line-length=120'
+let g:ale_linters = {
+\ 'javascript': ['eslint'],
+\}
+
+" Do not lint or fix minified files.
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\}
+" If you configure g:ale_pattern_options outside of vimrc, you need this.
+let g:ale_pattern_options_enabled = 1
+
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
 "***************************ale end******************************"
 
 "***************************compile and debug end******************************"
@@ -476,12 +490,6 @@ Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'majutsushi/tagbar'
-
-" TODO
-"***************************start deoplete******************************"
-" let g:deoplete#enable_at_startup = 1
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"***************************end deoplete*********************************"
 
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-com' }
 
