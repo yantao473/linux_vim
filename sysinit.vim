@@ -402,7 +402,7 @@ let g:formatters_php = ['cfamily']
 " range format python
 let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline. ' --max-line-length=119'"
 let g:formatters_python = ['autopep8']
-noremap <F2> :Autoformat<CR>
+noremap <F2> :Autoformat<CR>:w<CR>
 "***************************autoformater end******************************"
 
 "***************************ale start******************************"
@@ -483,7 +483,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 
 " javascript
-" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 " Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 
 " tmux
