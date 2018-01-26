@@ -477,13 +477,13 @@ Plug 'Yggdroot/indentLine'
 " Plug 'nsf/gocode', {'rtp': 'vim/'}
 
 " auto complete  html/xml
-Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
+Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 " html
 Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 
 " javascript
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 
 " tmux
@@ -491,16 +491,16 @@ Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'majutsushi/tagbar'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-com' }
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --gocode-com'}
 
 " brackets
-Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 
 " 括号显示增强
 Plug 'kien/rainbow_parentheses.vim'
 
 " 文件搜索
-Plug 'junegunn/fzf', { 'dir': base_path.'fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', {'dir': base_path.'fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 
 " formater
