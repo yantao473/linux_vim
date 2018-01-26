@@ -413,7 +413,8 @@ Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 Plug 'christoomey/vim-tmux-navigator'
 
 " brackets
-Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
+
 
 " 括号显示增强
 Plug 'kien/rainbow_parentheses.vim'
