@@ -397,7 +397,9 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 let g:formatdef_cfamily = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
 let g:formatters_cpp = ['cfamily']
 let g:formatters_c = ['cfamily']
-let g:formatters_php = ['cfamily']
+
+let g:formatdef_phpstyle = '"astyle --mode=c -A10 -f -xg -j -c -s4"'
+let g:formatters_php = ['phpstyle']
 
 " range format python
 let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline. ' --max-line-length=119'"
