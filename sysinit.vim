@@ -398,7 +398,7 @@ let g:formatdef_cfamily = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
 let g:formatters_cpp = ['cfamily']
 let g:formatters_c = ['cfamily']
 
-let g:formatdef_phpstyle = '"astyle --mode=c -A10 -f -xg -j -c -s4"'
+let g:formatdef_phpstyle = '"astyle -A14 -xg -j -c -s4"'
 let g:formatters_php = ['phpstyle']
 
 " range format python
