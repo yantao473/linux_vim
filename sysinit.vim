@@ -75,10 +75,10 @@ nmap <F9> :call CompileRunGcc()<CR>
 function! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
-        exec "!gcc % -o %<"
+        exec "!gcc -Wall % -o %<"
         exec "!time ./%<"
     elseif &filetype == 'cpp'
-        exec "!g++ % -o %<"
+        exec "!g++ -Wall % -o %<"
         exec "!time ./%<"
     elseif &filetype == 'java'
         exec "!javac %"
@@ -422,9 +422,12 @@ Plug 'majutsushi/tagbar'
 
 " Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --gocode-com'}
 Plug 'roxma/nvim-completion-manager'
+Plug 'phpactor/phpactor',  {'do': 'composer install'}
 Plug 'roxma/ncm-phpactor'
-Plug 'phpactor/phpactor' ,  {'do': 'composer install'}
 Plug 'roxma/ncm-clang'
+Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/neco-syntax'
 
 " brackets
 Plug 'jiangmiao/auto-pairs'
