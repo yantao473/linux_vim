@@ -421,11 +421,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'majutsushi/tagbar'
 
 " Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --gocode-com'}
-Plug 'roxma/ncm-phpactor'
-Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
-Plug 'roxma/ncm-clang'
 Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/ncm-phpactor'
 Plug 'phpactor/phpactor' ,  {'do': 'composer install'}
+Plug 'roxma/ncm-clang'
 
 " brackets
 Plug 'jiangmiao/auto-pairs'
