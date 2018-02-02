@@ -227,92 +227,40 @@ let g:indentLine_enabled = 1
 nnoremap <silent><leader>lk :Files<CR>
 "***************************end fzf************************"
 
-" "***************************start YCM******************************"
-" "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-
-" "离开插入模式后自动关闭预览窗口
-" au InsertLeave * if pumvisible() == 0|pclose|endif
-
-" "按回车键即选中当前项
-" " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-" let g:ycm_global_ycm_extra_conf = '/usr/share/nvim/runtime/plug/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-
-" " 不显示开启vim时检查ycm_extra_conf文件的信息
-" let g:ycm_confirm_extra_conf = 0
-
-" " 开启基于tag的补全，可以在这之后添加需要的标签路径
-" let g:ycm_collect_identifiers_from_tags_files = 1
-
-" " 开启语义补全
-" let g:ycm_seed_identifiers_with_syntax = 1
-
-" "注释和字符串中的文字也会被收入补全
-" let g:ycm_collect_identifiers_from_comments_and_strings = 1
-
-" " 禁止缓存匹配项，每次都重新生成匹配项
-" " let g:ycm_cache_omnifunc = 0
-
-" " 输入第 2 个字符开始补全
-" let g:ycm_min_num_of_chars_for_completion= 2
-
-" "在注释输入中也能补全
-" let g:ycm_complete_in_comments = 1
-
-" "在字符串输入中也能补全
-" let g:ycm_complete_in_strings = 1
-
-" "定义快捷健补全
-" let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
-" let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
-
-" let g:ycm_autoclose_preview_window_after_completion=1
-
-" " 设置在下面几种格式的文件上屏蔽ycm
-" let g:ycm_filetype_blacklist = {
-            " \ 'tagbar' : 1,
-            " \ 'nerdtree' : 1
-            " \}
-
-" "设置关健字触发补全
-" let g:ycm_semantic_triggers =  {
-            " \   'c' : ['->', '.', ' ', '(', '[', '&'],
-            " \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-            " \             're!\[.*\]\s'],
-            " \   'ocaml' : ['.', '#'],
-            " \   'cpp,objcpp' : ['->', '.', '::'],
-            " \   'perl' : ['->'],
-            " \   'php' : ['->', '::'],
-            " \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-            " \   'ruby' : ['.', '::'],
-            " \   'lua' : ['.', ':'],
-            " \   'erlang' : [':'],
-            " \ }
-
-" " 定义函数跟踪快捷健
-" nnoremap <silent> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" "***************************end YCM******************************"
+""***************************start nvim-completion-manager******************************"
+se shortmess+=c
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+au User CmSetup call cm#register_source({'name' : 'cm-css',
+        \ 'priority': 9,
+        \ 'scoping': 1,
+        \ 'scopes': ['css','scss'],
+        \ 'abbreviation': 'css',
+        \ 'word_pattern': '[\w\-]+',
+        \ 'cm_refresh_patterns':['[\w\-]+\s*:\s+'],
+        \ 'cm_refresh': {'omnifunc': 'csscomplete#CompleteCSS'},
+        \ })
+""***************************end nvim-completion-manager******************************"
 
 "***************************start vim-go******************************"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_interfaces = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
 
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_autosave = 0
-let g:go_play_open_browser = 0
-let g:go_bin_path = expand("/bin")
-let g:go_bin_path = "/bin"      "or give absolute path
-let g:go_get_update = 0
+" let g:go_fmt_command = "goimports"
+" let g:go_fmt_fail_silently = 1
+" let g:go_fmt_autosave = 0
+" let g:go_play_open_browser = 0
+" let g:go_bin_path = expand("/bin")
+" let g:go_bin_path = "/bin"      "or give absolute path
+" let g:go_get_update = 0
 
-au BufRead,BufNewFile *.go set filetype=go
-au BufWritePre *.go :GoFmt
-nnoremap <silent> <leader>gr :GoRun<cr>
+" au BufRead,BufNewFile *.go set filetype=go
+" au BufWritePre *.go :GoFmt
+" nnoremap <silent> <leader>gr :GoRun<cr>
 "***************************end vim-go******************************"
 
 "***************************delimitMate start******************************"
@@ -355,11 +303,10 @@ let g:ale_pattern_options_enabled = 1
 let g:airline#extensions#ale#enabled = 1
 "***************************ale end******************************"
 
-"***************************compile and debug end******************************"
+"***************************compile and debug start******************************"
 map <silent> <leader>rc :call C_Compile()<cr>
 map <silent> <leader>rr :call C_Run()<cr>
 "***************************compile and debug end******************************"
-
 
 "***************************plug start**********************************
 let base_path = "/usr/share/nvim/runtime/plug/"
@@ -399,8 +346,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" syntax
+" async syntax
 Plug 'w0rp/ale'
+
+" intent
 Plug 'Yggdroot/indentLine'
 
 " golang
@@ -414,20 +363,20 @@ Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 
-
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 
+" tabbar
 Plug 'majutsushi/tagbar'
 
-" Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --gocode-com'}
 Plug 'roxma/nvim-completion-manager'
-Plug 'phpactor/phpactor',  {'do': 'composer install'}
-Plug 'roxma/ncm-phpactor'
-Plug 'roxma/ncm-clang'
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
-Plug 'Shougo/neoinclude.vim'
-Plug 'Shougo/neco-syntax'
+Plug 'phpactor/phpactor',  {'do': 'composer install'} " php complete server
+Plug 'roxma/ncm-phpactor' " for php complete
+Plug 'roxma/ncm-clang' " for c c++ complete
+Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'} " for javascript complete
+Plug 'Shougo/neoinclude.vim' " include complete
+Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
+Plug 'fisadev/vim-isort' " for python sort imports
 
 " brackets
 Plug 'jiangmiao/auto-pairs'
