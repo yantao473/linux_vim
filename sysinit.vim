@@ -128,7 +128,7 @@ function! SwitchToBuf(filename)
 endfunction
 map <silent> <leader>ee :call SwitchToBuf("/usr/share/nvim/sysinit.vim")<cr>
 "when _vimrc is edited, reload it
-au! bufwritepost sysinit.vim source /usr/share/nvim/sysinit.vim
+au! BufWritePost sysinit.vim source /usr/share/nvim/sysinit.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -142,7 +142,7 @@ au FileType c,cpp :set cindent
 
 " au FileType vim set nofen
 au FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
-
+au FileType vim,c,cpp,python,ruby,java,sh,html,javascript,php au BufWritePre <buffer> :%s/\s\+$//e
 
 "**************************start nerd commener*************************************
 let NERDSpaceDelims = 1
@@ -283,6 +283,8 @@ let g:formatters_php = ['phpstyle']
 let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline. ' --max-line-length=119'"
 let g:formatters_python = ['autopep8']
 noremap <F2> :Autoformat<CR>:w<CR>
+" python保存时自动格式化
+au BufWritePre *.py silent! Autoformat
 "***************************autoformater end******************************"
 
 "***************************ale start******************************"
@@ -307,6 +309,13 @@ let g:airline#extensions#ale#enabled = 1
 map <silent> <leader>rc :call C_Compile()<cr>
 map <silent> <leader>rr :call C_Run()<cr>
 "***************************compile and debug end******************************"
+
+"***************************vim-isort start******************************"
+ let g:vim_isort_map = '<C-i>'
+
+ " 保存前时自动调用Isort
+ au BufWritePre *.py silent! Isort
+"***************************vim-isort end******************************"
 
 "***************************plug start**********************************
 let base_path = "/usr/share/nvim/runtime/plug/"
