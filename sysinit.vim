@@ -336,7 +336,8 @@ map <silent> <leader>rr :call C_Run()<cr>
 "***************************vim-isort end******************************"
 
 "***************************plug start**********************************
-let base_path = "/usr/share/nvim/runtime/plug/"
+let root_path = "/usr/share/nvim/runtime/"
+let base_path = root_path. "custom_plugin/"
 let g:plug_path = base_path . "vim-plug"
 let g:mvpath = g:plug_path .'/autoload/'
 
@@ -346,7 +347,6 @@ if empty(glob(base_path))
     " install git clone https://github.com/junegunn/vim-plug.git
     silent exe "!mkdir -p ". base_path
     silent exe "!git clone https://github.com/junegunn/vim-plug.git " . g:plug_path
-    silent exe "!mkdir -p ". g:mvpath
     silent exe "!/bin/cp " . g:plug_path ."/plug.vim " . g:mvpath. '/plug.vim'
     au VimEnter * PlugInstall
 endif
