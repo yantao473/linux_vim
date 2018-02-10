@@ -379,18 +379,29 @@ let g:ale_python_flake8_args = '--max-line-length=120'
 "***************************ale end******************************"
 
 "***************************plug start**********************************
-let g:plug_path='/usr/share/vim/vimfiles/plug/vim-plug'
+let root_path = "/usr/share/vim/vimfiles/"
+let base_path = root_path. "custom_plugin/"
+let g:plug_path = base_path . "vim-plug"
+let g:mvpath = root_path .'/autoload/'
+
+
+" Note: install vim-plug if not present
+if empty(glob(base_path))
+    " install git clone https://github.com/junegunn/vim-plug.git
+    silent exe "!mkdir -p ". base_path
+    silent exe "!git clone https://github.com/junegunn/vim-plug.git " . g:plug_path
+    silent exe "!/bin/cp " . g:plug_path ."/plug.vim " . g:mvpath. '/plug.vim'
+    au VimEnter * PlugInstall
+endif
+
 function! DoPlug()
-    if !isdirectory(g:plug_path . "/autoload")
-        call mkdir(g:plug_path ."/autoload", "p")
-        execute "!cp " .g:plug_path ."/plug.vim " . g:plug_path . "/autoload/plug.vim"  
-    endif
+    silent exe "!cp " . g:plug_path ."/plug.vim " . g:mvpath. '/plug.vim'
 endfunction
 
-" install git clone https://github.com/junegunn/vim-plug.git 
-set rtp+=/usr/share/vim/vimfiles/plug/vim-plug
+se rtp+=g:plug_path
 
-call plug#begin('/usr/share/vim/vimfiles/plug')
+call plug#begin(base_path)
+
 Plug 'https://github.com/junegunn/vim-plug.git', { 'do': function('DoPlug') }
 " base
 Plug 'https://github.com/vim-scripts/genutils.git'
