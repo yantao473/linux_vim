@@ -140,6 +140,9 @@ au FileType html,python,php,perl,c,c++,javascript,txt,vim setl lbr
 au FileType text setl textwidth=78
 au FileType c,cpp :set cindent
 
+" for vue syntax highlight
+au BufRead,BufNewFile *.vue set filetype=html
+
 " au FileType vim set nofen
 au FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
 au FileType vim,c,cpp,python,ruby,java,sh,html,javascript,php au BufWritePre <buffer> :%s/\s\+$//e
@@ -243,6 +246,9 @@ let g:indentLine_enabled = 1
 
 "***************************start fzf ************************"
 nnoremap <silent><leader>lk :Files<CR>
+" ag for fzf
+let g:ackprg = 'ag --nogroup --nocolor --column'
+"let g:ackprg = 'ag --vimgrep'
 "***************************end fzf************************"
 
 ""***************************start nvim-completion-manager******************************"
