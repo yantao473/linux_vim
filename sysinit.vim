@@ -335,11 +335,16 @@ map <silent> <leader>rr :call C_Run()<cr>
  au BufWritePre *.py silent! Isort
 "***************************vim-isort end******************************"
 
+"***************************LanguageClient start******************************"
+au FileType php LanguageClientStart
+let g:LanguageClient_loggingLevel = 'DEBUG'
+"***************************LanguageClient end******************************"
+
 "***************************plug start**********************************
 let root_path = "/usr/share/nvim/runtime/"
 let base_path = root_path. "custom_plugin/"
-let g:plug_path = base_path . "vim-plug"
-let g:mvpath = g:plug_path .'/autoload/'
+let g:plug_path = base_path . "vim-plug/"
+let g:mvpath = root_path .'/autoload/'
 
 
 " Note: install vim-plug if not present
@@ -347,7 +352,7 @@ if empty(glob(base_path))
     " install git clone https://github.com/junegunn/vim-plug.git
     silent exe "!mkdir -p ". base_path
     silent exe "!git clone https://github.com/junegunn/vim-plug.git " . g:plug_path
-    silent exe "!/bin/cp " . g:plug_path ."/plug.vim " . g:mvpath. '/plug.vim'
+    silent exe "!/bin/cp " . g:plug_path ."plug.vim " . g:mvpath. '/plug.vim'
     au VimEnter * PlugInstall
 endif
 
@@ -396,9 +401,10 @@ Plug 'christoomey/vim-tmux-navigator'
 " tabbar
 Plug 'majutsushi/tagbar'
 
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+
 Plug 'roxma/nvim-completion-manager'
-Plug 'phpactor/phpactor',  {'do': 'composer install'} " php complete server
-Plug 'roxma/ncm-phpactor' " for php complete
 Plug 'roxma/ncm-clang' " for c c++ complete
 Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'} " for javascript complete
 Plug 'Shougo/neoinclude.vim' " include complete
