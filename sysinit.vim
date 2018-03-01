@@ -341,10 +341,33 @@ map <silent> <leader>rr :call C_Run()<cr>
  au BufWritePre *.py silent! Isort
 "***************************vim-isort end******************************"
 
-"***************************LanguageClient start******************************"
-au FileType php LanguageClientStart
-let g:LanguageClient_loggingLevel = 'DEBUG'
-"***************************LanguageClient end******************************"
+"***************************deopletelete start******************************"
+let g:deoplete#enable_at_startup = 1
+
+" php
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
+
+" python
+let g:deoplete#sources#jedi#server_timeout = 2
+
+" javascript
+let g:deoplete#sources#ternjs#timeout = 1
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#depths = 1
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#filter = 0
+let g:deoplete#sources#ternjs#case_insensitive = 1
+let g:deoplete#sources#ternjs#guess = 0
+let g:deoplete#sources#ternjs#sort = 0
+let g:deoplete#sources#ternjs#expand_word_forward = 0
+let g:deoplete#sources#ternjs#omit_object_prototype = 0
+let g:deoplete#sources#ternjs#include_keywords = 1
+let g:deoplete#sources#ternjs#in_literal = 0
+let g:deoplete#sources#ternjs#filetypes = ['vue']
+
+"***************************deopletelete  end******************************"
+
 
 "***************************plug start**********************************
 let root_path = "/usr/share/nvim/runtime/"
@@ -397,6 +420,7 @@ Plug 'Yggdroot/indentLine'
 
 " auto complete  html/xml
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
+
 " html
 Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
@@ -407,12 +431,18 @@ Plug 'christoomey/vim-tmux-navigator'
 " tabbar
 Plug 'majutsushi/tagbar'
 
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+" Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+"Plug 'roxma/nvim-completion-manager'
+" Plug 'roxma/ncm-clang' " for c c++ complete
 
-Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/ncm-clang' " for c c++ complete
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'} " for javascript complete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang'
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+Plug 'zchee/deoplete-jedi'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
 Plug 'Shougo/neoinclude.vim' " include complete
 Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
 Plug 'fisadev/vim-isort' " for python sort imports
