@@ -366,6 +366,21 @@ let g:deoplete#sources#ternjs#include_keywords = 1
 let g:deoplete#sources#ternjs#in_literal = 0
 let g:deoplete#sources#ternjs#filetypes = ['vue']
 
+" tmux
+let g:tmuxcomplete#trigger = ''
+let g:tmuxcomplete#asyncomplete_source_options = {
+    \ 'name': 'tmuxcomplete',
+    \ 'whitelist': ['*'],
+    \ 'config': {
+    \     'splitmode': 'words',
+    \     'filter_prefix': 1,
+    \     'show_incomplete': 1,
+    \     'sort_candidates': 0,
+    \     'scrollback': 0,
+    \     'truncate': 0
+    \     }
+    \ }
+
 "***************************deopletelete  end******************************"
 
 
@@ -431,17 +446,13 @@ Plug 'christoomey/vim-tmux-navigator'
 " tabbar
 Plug 'majutsushi/tagbar'
 
-" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-" Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
-"Plug 'roxma/nvim-completion-manager'
-" Plug 'roxma/ncm-clang' " for c c++ complete
-
+" complete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-clang'
 Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 Plug 'zchee/deoplete-jedi'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'wellle/tmux-complete.vim'
 
 Plug 'Shougo/neoinclude.vim' " include complete
 Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
