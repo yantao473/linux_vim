@@ -300,7 +300,7 @@ let g:formatdef_cfamily = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
 let g:formatters_cpp = ['cfamily']
 let g:formatters_c = ['cfamily']
 
-let g:formatdef_phpstyle = '"astyle -A14 -xg -j -c -s4"'
+let g:formatdef_phpstyle = '"astyle --mode=c -A14 -xl  -C  -Y  -f -xg  -U -j -c -s4"'
 let g:formatters_php = ['phpstyle']
 
 " range format python
@@ -387,10 +387,9 @@ let g:tmuxcomplete#asyncomplete_source_options = {
 "***************************deopletelete  end******************************"
 
 "***************************gutentags start******************************"
-let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js']
+let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.txt', '*.log']
 let g:gutentags_cache_dir = '~/.cache/share/nvim/gutentags'
 "***************************gutentag end******************************"
-
 
 "***************************plug start**********************************
 let root_path = "/usr/share/nvim/runtime/"
