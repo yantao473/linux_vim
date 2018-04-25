@@ -191,7 +191,7 @@ nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 "***************************tmux end******************************"
 
 "***************************start tagbar******************************"
-let tagbar_ctags_bin='/usr/bin/ctags'
+let tagbar_ctags_bin='/bin/ctags'
 let g:tagbar_autofocus = 1
 nnoremap <silent><leader>tb :Tagbar<CR>
 nnoremap <silent><leader>tc :TagbarClose<CR>
@@ -386,6 +386,11 @@ let g:tmuxcomplete#asyncomplete_source_options = {
 
 "***************************deopletelete  end******************************"
 
+"***************************gutentags start******************************"
+let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js']
+let g:gutentags_cache_dir = '~/.cache/share/nvim/gutentags'
+"***************************gutentag end******************************"
+
 
 "***************************plug start**********************************
 let root_path = "/usr/share/nvim/runtime/"
@@ -464,6 +469,9 @@ Plug 'junegunn/fzf.vim'
 
 " formater
 Plug 'Chiel92/vim-autoformat'
+
+" tags
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 "***************************plug end**********************************
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
