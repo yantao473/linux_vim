@@ -149,7 +149,7 @@ au FileType vim,c,cpp,python,ruby,java,sh,html,javascript,php au BufWritePre <bu
 
 "**************************start nerd commener*************************************
 " Add spaces after comment delimiters by default
-" let g:NERDSpaceDelims = 1
+ let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
@@ -344,9 +344,12 @@ map <silent> <leader>rr :call C_Run()<cr>
 "***************************deopletelete start******************************"
 let g:deoplete#enable_at_startup = 1
 
-" php
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " python
 let g:deoplete#sources#jedi#server_timeout = 2
@@ -408,25 +411,42 @@ se rtp+=g:plug_path
 
 call plug#begin(base_path)
 
-" base
+" utils
 Plug 'https://github.com/junegunn/vim-plug.git', {'do': function('DoPlug')}
 Plug 'tpope/vim-pathogen'
 Plug 'https://github.com/vim-scripts/genutils.git'
-Plug 'scrooloose/nerdcommenter'
+
+" comletion/coding
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zchee/deoplete-clang'
+Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
+Plug 'zchee/deoplete-jedi'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } " for javascrpt complete
+Plug 'wellle/tmux-complete.vim'
+Plug 'Shougo/neoinclude.vim' " include complete
+Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
+Plug 'fisadev/vim-isort' " for python sort imports
+Plug 'scrooloose/nerdcommenter' "comment for code
+Plug 'jiangmiao/auto-pairs' " brackets
+Plug 'kien/rainbow_parentheses.vim' " 括号显示增强
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" navigation
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'majutsushi/tagbar'
+Plug 'christoomey/vim-tmux-navigator'  " tmux
+
+" looking
+Plug 'Yggdroot/indentLine'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " git
 Plug 'tpope/vim-fugitive'
 
-" statusline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
 " async syntax
 Plug 'w0rp/ale'
-
-" intent
-Plug 'Yggdroot/indentLine'
 
 " golang
 " Plug 'fatih/vim-go'
@@ -435,36 +455,10 @@ Plug 'Yggdroot/indentLine'
 
 " auto complete  html/xml
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
-
-" html
 Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 
-" tmux
-Plug 'christoomey/vim-tmux-navigator'
-
-" tabbar
-Plug 'majutsushi/tagbar'
-
-" complete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-clang'
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-Plug 'zchee/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'wellle/tmux-complete.vim'
-
-Plug 'Shougo/neoinclude.vim' " include complete
-Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
-Plug 'fisadev/vim-isort' " for python sort imports
-
-" brackets
-Plug 'jiangmiao/auto-pairs'
-
-" 括号显示增强
-Plug 'kien/rainbow_parentheses.vim'
-
-" 文件搜索
+" file search
 Plug 'junegunn/fzf', {'dir': base_path.'fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 
