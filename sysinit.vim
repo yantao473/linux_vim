@@ -425,7 +425,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'zchee/deoplete-clang'
 Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
 Plug 'zchee/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } " for javascrpt complete
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } " for javascrpt complete
 Plug 'wellle/tmux-complete.vim'
 Plug 'Shougo/neoinclude.vim' " include complete
 Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
@@ -446,8 +446,9 @@ Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" git
+" version control
 Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 
 " async syntax
 Plug 'w0rp/ale'
@@ -468,6 +469,7 @@ Plug 'junegunn/fzf.vim'
 
 " formater
 Plug 'Chiel92/vim-autoformat'
+Plug 'junegunn/vim-easy-align'
 
 " tags
 Plug 'ludovicchabant/vim-gutentags'
