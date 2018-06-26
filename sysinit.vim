@@ -343,6 +343,7 @@ map <silent> <leader>rr :call C_Run()<cr>
 
 "***************************deopletelete start******************************"
 let g:deoplete#enable_at_startup = 1
+let g:neosnippet#enable_completed_snippet = 1
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -353,21 +354,6 @@ inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " python
 let g:deoplete#sources#jedi#server_timeout = 2
-
-" javascript
-let g:deoplete#sources#ternjs#timeout = 1
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#depths = 1
-let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#filter = 0
-let g:deoplete#sources#ternjs#case_insensitive = 1
-let g:deoplete#sources#ternjs#guess = 0
-let g:deoplete#sources#ternjs#sort = 0
-let g:deoplete#sources#ternjs#expand_word_forward = 0
-let g:deoplete#sources#ternjs#omit_object_prototype = 0
-let g:deoplete#sources#ternjs#include_keywords = 1
-let g:deoplete#sources#ternjs#in_literal = 0
-let g:deoplete#sources#ternjs#filetypes = ['vue']
 
 " tmux
 let g:tmuxcomplete#trigger = ''
@@ -390,6 +376,14 @@ let g:tmuxcomplete#asyncomplete_source_options = {
 let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.txt', '*.log']
 let g:gutentags_cache_dir = '~/.cache/share/nvim/gutentags'
 "***************************gutentag end******************************"
+
+"***************************easy-align start******************************"
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+"***************************eay-align end******************************"
 
 "***************************plug start**********************************
 let root_path = "/usr/share/nvim/runtime/"
@@ -422,19 +416,24 @@ Plug 'https://github.com/vim-scripts/genutils.git'
 
 " comletion/coding
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neoinclude.vim' " include complete
+Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
+Plug 'wokalski/autocomplete-flow'
+" For func argument completion
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+
 " Plug 'zchee/deoplete-clang'
 Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
 Plug 'zchee/deoplete-jedi'
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } " for javascrpt complete
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } " for javascrpt complete
 Plug 'wellle/tmux-complete.vim'
-Plug 'Shougo/neoinclude.vim' " include complete
-Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
 Plug 'fisadev/vim-isort' " for python sort imports
 Plug 'scrooloose/nerdcommenter' "comment for code
 Plug 'jiangmiao/auto-pairs' " brackets
 Plug 'kien/rainbow_parentheses.vim' " 括号显示增强
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 " navigation
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
