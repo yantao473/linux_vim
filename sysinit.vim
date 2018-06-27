@@ -238,12 +238,6 @@ au BufNewFile *.py call HeaderPython()
 
 "***************************end python******************************"
 
-"***************************start indentLine************************"
-let g:indentLine_color_term = 239
-let g:indentLine_char='┆'
-let g:indentLine_enabled = 1
-"***************************end indentLine************************"
-
 "***************************start fzf ************************"
 nnoremap <silent><leader>lk :Files<CR>
 " ag for fzf
@@ -343,14 +337,13 @@ map <silent> <leader>rr :call C_Run()<cr>
 
 "***************************deopletelete start******************************"
 let g:deoplete#enable_at_startup = 1
-let g:neosnippet#enable_completed_snippet = 1
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-b>"
 
-inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<tab>"
 
 " python
 let g:deoplete#sources#jedi#server_timeout = 2
@@ -419,9 +412,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neoinclude.vim' " include complete
 Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
 Plug 'wokalski/autocomplete-flow'
-" For func argument completion
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
 
 " Plug 'zchee/deoplete-clang'
 Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
@@ -432,8 +422,8 @@ Plug 'fisadev/vim-isort' " for python sort imports
 Plug 'scrooloose/nerdcommenter' "comment for code
 Plug 'jiangmiao/auto-pairs' " brackets
 Plug 'kien/rainbow_parentheses.vim' " 括号显示增强
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " navigation
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -441,7 +431,6 @@ Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'  " tmux
 
 " looking
-Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
