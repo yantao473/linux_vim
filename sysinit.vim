@@ -413,12 +413,10 @@ Plug 'Shougo/neoinclude.vim' " include complete
 Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
 Plug 'wokalski/autocomplete-flow'
 
-" Plug 'zchee/deoplete-clang'
 Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
-Plug 'zchee/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } " for javascrpt complete
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'wellle/tmux-complete.vim'
-Plug 'fisadev/vim-isort' " for python sort imports
+Plug 'fisadev/vim-isort', {'for': 'python'} " for python sort imports
 Plug 'scrooloose/nerdcommenter' "comment for code
 Plug 'jiangmiao/auto-pairs' " brackets
 Plug 'kien/rainbow_parentheses.vim' " 括号显示增强
