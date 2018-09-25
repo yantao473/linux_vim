@@ -372,10 +372,10 @@ let g:gutentags_cache_dir = '~/.cache/share/nvim/gutentags'
 
 "***************************easy-align start******************************"
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+" xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+" nmap ga <Plug>(EasyAlign)
 "***************************eay-align end******************************"
 
 "***************************plug start**********************************
@@ -432,10 +432,6 @@ Plug 'christoomey/vim-tmux-navigator'  " tmux
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" version control
-Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
-
 " async syntax
 Plug 'w0rp/ale'
 
@@ -455,10 +451,18 @@ Plug 'junegunn/fzf.vim'
 
 " formater
 Plug 'Chiel92/vim-autoformat'
-Plug 'junegunn/vim-easy-align'
 
 " tags
 Plug 'ludovicchabant/vim-gutentags'
+
+" version control
+Plug 'tpope/vim-fugitive'
+
+" other
+" Plug 'junegunn/vim-easy-align'
+" Plug 'tpope/vim-surround'
+" Plug 'terryma/vim-multiple-cursors'
+
 call plug#end()
 "***************************plug end**********************************
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
