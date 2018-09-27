@@ -140,9 +140,6 @@ au FileType html,python,php,perl,c,c++,javascript,txt,vim setl lbr
 au FileType text setl textwidth=78
 au FileType c,cpp :set cindent
 
-" for vue syntax highlight
-au BufRead,BufNewFile *.vue set filetype=html
-
 " au FileType vim set nofen
 au FileType vim map <buffer> <leader><space> :w!<cr>:source %<cr>
 au FileType vim,c,cpp,python,ruby,java,sh,html,javascript,php au BufWritePre <buffer> :%s/\s\+$//e
@@ -224,8 +221,6 @@ let g:airline#extensions#whitespace#symbol = '!'
 "***************************end airline******************************"
 
 "***************************start python******************************"
-" abbr pyhd #!/usr/bin/env python<CR># -*- coding: utf-8 -*-<CR><CR><CR><esc>0
-" au FileType python iabbr main def main():<CR>pass<CR><CR><CR>if __name__ == '__main__':<CR>main()
 au BufNewFile *.py iabbr main def main():<CR>pass<CR><CR><CR>if __name__ == '__main__':<CR>main()
 
 function! HeaderPython()
@@ -259,28 +254,6 @@ au User CmSetup call cm#register_source({'name' : 'cm-css',
         \ })
 ""***************************end nvim-completion-manager******************************"
 
-"***************************start vim-go******************************"
-" let g:go_highlight_functions = 1
-" let g:go_highlight_methods = 1
-" let g:go_highlight_fields = 1
-" let g:go_highlight_structs = 1
-" let g:go_highlight_interfaces = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_build_constraints = 1
-
-" let g:go_fmt_command = "goimports"
-" let g:go_fmt_fail_silently = 1
-" let g:go_fmt_autosave = 0
-" let g:go_play_open_browser = 0
-" let g:go_bin_path = expand("/bin")
-" let g:go_bin_path = "/bin"      "or give absolute path
-" let g:go_get_update = 0
-
-" au BufRead,BufNewFile *.go set filetype=go
-" au BufWritePre *.go :GoFmt
-" nnoremap <silent> <leader>gr :GoRun<cr>
-"***************************end vim-go******************************"
-
 "***************************delimitMate start******************************"
 " for python docstring ", 特别有用
 au FileType python let b:delimitMate_nesting_quotes = ['"']
@@ -301,8 +274,17 @@ let g:formatters_php = ['phpstyle']
 let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline. ' --max-line-length=119'"
 let g:formatters_python = ['autopep8']
 noremap <F2> :Autoformat<CR>:w<CR>
+
 " python保存时自动格式化
 au BufWritePre *.py silent! Autoformat
+
+" php
+function! HeaderPHP()
+    call setline(1, "<?php")
+    normal G
+    normal o
+endfunction
+au BufNewFile *.php call HeaderPHP()
 "***************************autoformater end******************************"
 
 "***************************ale start******************************"
