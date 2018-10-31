@@ -329,36 +329,12 @@ inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<tab>"
 
 " python
 let g:deoplete#sources#jedi#server_timeout = 2
-
-" tmux
-let g:tmuxcomplete#trigger = ''
-let g:tmuxcomplete#asyncomplete_source_options = {
-    \ 'name': 'tmuxcomplete',
-    \ 'whitelist': ['*'],
-    \ 'config': {
-    \     'splitmode': 'words',
-    \     'filter_prefix': 1,
-    \     'show_incomplete': 1,
-    \     'sort_candidates': 0,
-    \     'scrollback': 0,
-    \     'truncate': 0
-    \     }
-    \ }
-
 "***************************deopletelete  end******************************"
 
 "***************************gutentags start******************************"
 let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.txt', '*.log']
 let g:gutentags_cache_dir = '~/.cache/share/nvim/gutentags'
 "***************************gutentag end******************************"
-
-"***************************easy-align start******************************"
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-" xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-" nmap ga <Plug>(EasyAlign)
-"***************************eay-align end******************************"
 
 "***************************plug start**********************************
 let root_path = "/usr/share/nvim/runtime/"
@@ -397,7 +373,6 @@ Plug 'wokalski/autocomplete-flow'
 
 Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
-Plug 'wellle/tmux-complete.vim'
 Plug 'fisadev/vim-isort', {'for': 'python'} " for python sort imports
 Plug 'scrooloose/nerdcommenter' "comment for code
 Plug 'jiangmiao/auto-pairs' " brackets
@@ -408,7 +383,6 @@ Plug 'honza/vim-snippets'
 " navigation
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'majutsushi/tagbar'
-Plug 'christoomey/vim-tmux-navigator'  " tmux
 
 " looking
 Plug 'vim-airline/vim-airline'
@@ -428,7 +402,6 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 
 " file search
-Plug 'junegunn/fzf', {'dir': base_path.'fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 
 " formater
