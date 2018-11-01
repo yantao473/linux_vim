@@ -176,17 +176,6 @@ map <silent> <leader>nc :NERDTreeClose<cr>
 let javascript_enable_domhtmlcss = 1
 "***************************end js syntax highlight******************************"
 
-"***************************tmux start******************************"
-let g:tmux_navigator_no_mappings = 1
-let g:tmux_navigator_save_on_switch = 2
-
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
-"***************************tmux end******************************"
-
 "***************************start tagbar******************************"
 let tagbar_ctags_bin='/bin/ctags'
 let g:tagbar_autofocus = 1
