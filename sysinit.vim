@@ -381,7 +381,6 @@ Plug 'w0rp/ale'
 " auto complete  html/xml
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 " Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
-Plug 'https://github.com/vim-scripts/matchit.zip.git', {'for': ['html', 'xml'] }
 
 " file search
 Plug 'junegunn/fzf.vim'
