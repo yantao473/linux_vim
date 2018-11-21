@@ -356,12 +356,11 @@ Plug 'https://github.com/vim-scripts/genutils.git'
 
 " comletion/coding
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neoinclude.vim' " include complete
 Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
 
 Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
-" Plug 'zchee/deoplete-jedi', {'for': 'python'}
-" Plug 'fisadev/vim-isort', {'for': 'python'} " for python sort imports
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'fisadev/vim-isort', {'for': 'python'} " for python sort imports
 Plug 'scrooloose/nerdcommenter' "comment for code
 Plug 'jiangmiao/auto-pairs' " brackets
 Plug 'SirVer/ultisnips'
