@@ -352,15 +352,18 @@ call plug#begin(base_path)
 " utils
 Plug 'https://github.com/junegunn/vim-plug.git', {'do': function('DoPlug')}
 Plug 'tpope/vim-pathogen'
-Plug 'https://github.com/vim-scripts/genutils.git'
 
 " comletion/coding
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
 
-Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
-Plug 'fisadev/vim-isort', {'for': 'python'} " for python sort imports
+" Plugin for php complete
+" Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
+
+" plugin for python
+" Plug 'zchee/deoplete-jedi', {'for': 'python'}
+" Plug 'fisadev/vim-isort', {'for': 'python'} " for python sort imports
+
 Plug 'scrooloose/nerdcommenter' "comment for code
 Plug 'jiangmiao/auto-pairs' " brackets
 Plug 'SirVer/ultisnips'
@@ -392,11 +395,6 @@ Plug 'ludovicchabant/vim-gutentags'
 
 " version control
 Plug 'tpope/vim-fugitive'
-
-" other
-" Plug 'junegunn/vim-easy-align'
-" Plug 'tpope/vim-surround'
-" Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 "***************************plug end**********************************
