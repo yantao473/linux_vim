@@ -183,31 +183,29 @@ nnoremap <silent><leader>tb :Tagbar<CR>
 nnoremap <silent><leader>tc :TagbarClose<CR>
 "***************************end tagbar******************************"
 
-"***************************start airline******************************"
-let g:airline_theme="luna"
-" let g:airline_theme="powerlineish"
+"***************************start lightline******************************"
+let g:lightline = {
+  \   'active': {
+  \     'left':[ [ 'mode', 'paste' ],
+  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+  \     ]
+  \   },
+	\   'component': {
+	\     'lineinfo': ' %3l:%-2v',
+	\   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#head',
+  \   }
+  \ }
 
-"这个是安装字体后 必须设置此项"
-let g:airline_powerline_fonts = 1
+let g:lightline.separator = {
+	\   'left': '', 'right': ''
+  \}
 
-" 打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件"
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#branch#empty_message = ''
-
-"设置切换Buffer快捷键"
-nnoremap <C-N> :bn<CR>
-nnoremap <C-P> :bp<CR>
-
-" 关闭状态显示空白符号计数"
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#whitespace#symbol = '!'
-
-"***************************end airline******************************"
+let g:lightline.subseparator = {
+	\   'left': '', 'right': ''
+  \}
+"***************************end lightline******************************"
 
 "***************************start python******************************"
 au BufNewFile *.py iabbr main def main():<CR>pass<CR><CR><CR>if __name__ == '__main__':<CR>main()
@@ -289,9 +287,6 @@ let g:ale_pattern_options = {
 \}
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
 let g:ale_pattern_options_enabled = 1
-
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
 "***************************ale end******************************"
 
 "***************************compile and debug start******************************"
@@ -373,9 +368,8 @@ Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'majutsushi/tagbar'
 
-" looking
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" statusline
+Plug 'itchyny/lightline.vim'
 
 " async syntax
 Plug 'w0rp/ale'
