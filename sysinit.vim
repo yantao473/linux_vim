@@ -205,6 +205,9 @@ let g:lightline.separator = {
 let g:lightline.subseparator = {
 	\   'left': '', 'right': ''
   \}
+
+" for buffers
+nnoremap <Leader>b :ls<CR>:b<Space>
 "***************************end lightline******************************"
 
 "***************************start python******************************"
