@@ -193,18 +193,10 @@ let g:lightline = {
 	\   'component': {
 	\     'lineinfo': ' %3l:%-2v',
 	\   },
-  \   'component_function': {
-  \     'gitbranch': 'fugitive#head',
-  \   }
+   \   'component_function': {
+   \     'gitbranch': 'fugitive#head',
+   \   }
   \ }
-
-let g:lightline.separator = {
-	\   'left': '', 'right': ''
-  \}
-
-let g:lightline.subseparator = {
-	\   'left': '', 'right': ''
-  \}
 
 " for buffers
 nnoremap <Leader>b :ls<CR>:b<Space>
@@ -323,6 +315,11 @@ let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.txt', '*.log']
 let g:gutentags_cache_dir = '~/.cache/share/nvim/gutentags'
 "***************************gutentag end******************************"
 
+"***************************phpcd start******************************"
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
+"***************************phpcd end******************************"
+
 "***************************plug start**********************************
 let root_path = "/usr/share/nvim/runtime/"
 let base_path = root_path. "custom_plugin/"
@@ -356,7 +353,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
 
 " Plugin for php complete
-" Plug 'padawan-php/deoplete-padawan', {'do': 'composer install', 'for': 'php' }
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
 " plugin for python
 " Plug 'zchee/deoplete-jedi', {'for': 'python'}
