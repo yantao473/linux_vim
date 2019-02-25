@@ -1,7 +1,7 @@
 augroup Fedora
-  au!
-  " RPM spec file template
-  au BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
+    au!
+    " RPM spec file template
+    au BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
 augroup END
 
 """"""""""""""""""""""""""""""""""""""start config by yanqing4""""""""""""""""""""""""""
@@ -146,7 +146,7 @@ au FileType vim,c,cpp,python,ruby,java,sh,html,javascript,php au BufWritePre <bu
 
 "**************************start nerd commener*************************************
 " Add spaces after comment delimiters by default
- let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
@@ -176,27 +176,20 @@ map <silent> <leader>nc :NERDTreeClose<cr>
 let javascript_enable_domhtmlcss = 1
 "***************************end js syntax highlight******************************"
 
-"***************************start tagbar******************************"
-let tagbar_ctags_bin='/bin/ctags'
-let g:tagbar_autofocus = 1
-nnoremap <silent><leader>tb :Tagbar<CR>
-nnoremap <silent><leader>tc :TagbarClose<CR>
-"***************************end tagbar******************************"
-
 "***************************start lightline******************************"
 let g:lightline = {
-  \   'active': {
-  \     'left':[ [ 'mode', 'paste' ],
-  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-  \     ]
-  \   },
-	\   'component': {
-	\     'lineinfo': ' %3l:%-2v',
-	\   },
-   \   'component_function': {
-   \     'gitbranch': 'fugitive#head',
-   \   }
-  \ }
+            \   'active': {
+            \     'left':[ [ 'mode', 'paste' ],
+            \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+            \     ]
+            \   },
+            \   'component': {
+            \     'lineinfo': ' %3l:%-2v',
+            \   },
+            \   'component_function': {
+            \     'gitbranch': 'fugitive#head',
+            \   }
+            \ }
 
 " for buffers
 nnoremap <Leader>b :ls<CR>:b<Space>
@@ -226,14 +219,14 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 se shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 au User CmSetup call cm#register_source({'name' : 'cm-css',
-        \ 'priority': 9,
-        \ 'scoping': 1,
-        \ 'scopes': ['css','scss'],
-        \ 'abbreviation': 'css',
-        \ 'word_pattern': '[\w\-]+',
-        \ 'cm_refresh_patterns':['[\w\-]+\s*:\s+'],
-        \ 'cm_refresh': {'omnifunc': 'csscomplete#CompleteCSS'},
-        \ })
+            \ 'priority': 9,
+            \ 'scoping': 1,
+            \ 'scopes': ['css','scss'],
+            \ 'abbreviation': 'css',
+            \ 'word_pattern': '[\w\-]+',
+            \ 'cm_refresh_patterns':['[\w\-]+\s*:\s+'],
+            \ 'cm_refresh': {'omnifunc': 'csscomplete#CompleteCSS'},
+            \ })
 ""***************************end nvim-completion-manager******************************"
 
 "***************************delimitMate start******************************"
@@ -270,18 +263,18 @@ au BufNewFile *.php call HeaderPHP()
 "***************************autoformater end******************************"
 
 "***************************ale start******************************"
-let g:ale_python_flake8_args = '--max-line-length=120'
-let g:ale_linters = {
-\ 'javascript': ['eslint'],
-\}
-
-" Do not lint or fix minified files.
-let g:ale_pattern_options = {
-\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-\}
-" If you configure g:ale_pattern_options outside of vimrc, you need this.
-let g:ale_pattern_options_enabled = 1
+" let g:ale_python_flake8_args = '--max-line-length=120'
+" let g:ale_linters = {
+" \ 'javascript': ['eslint'],
+" \}
+"
+" " Do not lint or fix minified files.
+" let g:ale_pattern_options = {
+" \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+" \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+" \}
+" " If you configure g:ale_pattern_options outside of vimrc, you need this.
+" let g:ale_pattern_options_enabled = 1
 "***************************ale end******************************"
 
 "***************************compile and debug start******************************"
@@ -290,35 +283,80 @@ map <silent> <leader>rr :call C_Run()<cr>
 "***************************compile and debug end******************************"
 
 "***************************vim-isort start******************************"
- let g:vim_isort_map = '<C-i>'
+let g:vim_isort_map = '<C-i>'
 
- " 保存前时自动调用Isort
- au BufWritePre *.py silent! Isort
+" 保存前时自动调用Isort
+au BufWritePre *.py silent! Isort
 "***************************vim-isort end******************************"
 
-"***************************deopletelete start******************************"
-let g:deoplete#enable_at_startup = 1
+"***************************coc start**********************************
+set hidden
+set updatetime=300
+set signcolumn=yes
+set shortmess +=c
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-b>"
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
-inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<tab>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" python
-let g:deoplete#sources#jedi#server_timeout = 2
-"***************************deopletelete  end******************************"
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-Space> coc#refresh()
 
-"***************************gutentags start******************************"
-let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.txt', '*.log']
-let g:gutentags_cache_dir = '~/.cache/share/nvim/gutentags'
-"***************************gutentag end******************************"
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-"***************************phpcd start******************************"
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni']
-"***************************phpcd end******************************"
+" Use <C-x><C-o> to complete 'word', 'emoji' and 'include' sources
+imap <silent> <C-x><C-o> <Plug>(coc-complete-custom)
+
+nmap <silent> <C-p> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-n> <Plug>(coc-diagnostic-next)
+
+" Remap keys for goto
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use gh for show documentation in preview window
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if &filetype == 'vim'
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
+nmap <leader>rn <Plug>(coc-rename)
+
+" Show signature help while editing
+" autocmd CursorHoldI * silent! call CocAction('showSignatureHelp')
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+
+" Use `:Format` for format current buffer
+" command! -nargs=0 CocFormat :call CocAction('format')
+"
+" nmap <leader>r :CocFormat<CR>
+"
+" " Use `:Fold` for fold current buffer
+" command! -nargs=? CocFold :call CocAction('fold', <f-args>)
+
+"***************************coc end**********************************
 
 "***************************plug start**********************************
 let root_path = "/usr/share/nvim/runtime/"
@@ -348,31 +386,20 @@ call plug#begin(base_path)
 Plug 'https://github.com/junegunn/vim-plug.git', {'do': function('DoPlug')}
 Plug 'tpope/vim-pathogen'
 
-" comletion/coding
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neco-syntax' " for syntax complete e.g. function const etc
-
-" Plugin for php complete
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-
-" plugin for python
-" Plug 'zchee/deoplete-jedi', {'for': 'python'}
-" Plug 'fisadev/vim-isort', {'for': 'python'} " for python sort imports
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 Plug 'scrooloose/nerdcommenter' "comment for code
 Plug 'jiangmiao/auto-pairs' " brackets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
 " navigation
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 
 " statusline
 Plug 'itchyny/lightline.vim'
 
 " async syntax
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 " auto complete  html/xml
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
@@ -384,13 +411,11 @@ Plug 'junegunn/fzf.vim'
 " formater
 Plug 'Chiel92/vim-autoformat'
 
-" tags
-Plug 'ludovicchabant/vim-gutentags'
-
 " version control
 Plug 'tpope/vim-fugitive'
 
 call plug#end()
 "***************************plug end**********************************
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
-" vim: et ts=4 sw=4
+"le
+"vim: et ts=4 sw=4
