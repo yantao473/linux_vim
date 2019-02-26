@@ -1,7 +1,7 @@
 augroup Fedora
-    au!
-    " RPM spec file template
-    au BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
+au!
+" RPM spec file template
+au BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
 augroup END
 
 """"""""""""""""""""""""""""""""""""""start config by yanqing4""""""""""""""""""""""""""
@@ -192,7 +192,7 @@ let g:lightline = {
             \ }
 
 " for buffers
-nnoremap <Leader>b :ls<CR>:b<Space>
+nnoremap <leader>b :ls<CR>:b<Space>
 "***************************end lightline******************************"
 
 "***************************start python******************************"
@@ -292,7 +292,6 @@ au BufWritePre *.py silent! Isort
 "***************************coc start**********************************
 set hidden
 set updatetime=300
-set signcolumn=yes
 set shortmess +=c
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -302,6 +301,8 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -310,16 +311,6 @@ endfunction
 
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-Space> coc#refresh()
-
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use <C-x><C-o> to complete 'word', 'emoji' and 'include' sources
-imap <silent> <C-x><C-o> <Plug>(coc-complete-custom)
-
-nmap <silent> <C-p> <Plug>(coc-diagnostic-prev)
-nmap <silent> <C-n> <Plug>(coc-diagnostic-next)
 
 " Remap keys for goto
 nmap <silent> gd <Plug>(coc-definition)
@@ -339,23 +330,6 @@ function! s:show_documentation()
 endfunction
 
 nmap <leader>rn <Plug>(coc-rename)
-
-" Show signature help while editing
-" autocmd CursorHoldI * silent! call CocAction('showSignatureHelp')
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-
-" Use `:Format` for format current buffer
-" command! -nargs=0 CocFormat :call CocAction('format')
-"
-" nmap <leader>r :CocFormat<CR>
-"
-" " Use `:Fold` for fold current buffer
-" command! -nargs=? CocFold :call CocAction('fold', <f-args>)
-
 "***************************coc end**********************************
 
 "***************************plug start**********************************
@@ -407,6 +381,7 @@ Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 
 " file search
 Plug 'junegunn/fzf.vim'
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 " formater
 Plug 'Chiel92/vim-autoformat'
