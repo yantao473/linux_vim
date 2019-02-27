@@ -76,10 +76,10 @@ function! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
         exec "!gcc -Wall % -o %<"
-        exec "!time ./%<"
+        exec "!time %<"
     elseif &filetype == 'cpp'
         exec "!g++ -Wall % -o %<"
-        exec "!time ./%<"
+        exec "!time %<"
     elseif &filetype == 'java'
         exec "!javac %"
         exec "!time java %<"
