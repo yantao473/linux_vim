@@ -180,7 +180,7 @@ let javascript_enable_domhtmlcss = 1
 let g:lightline = {
             \   'active': {
             \     'left':[ [ 'mode', 'paste' ],
-            \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+            \              [ 'gitbranch', 'cocstatus','readonly', 'filename', 'modified' ]
             \     ]
             \   },
             \   'component': {
@@ -188,6 +188,7 @@ let g:lightline = {
             \   },
             \   'component_function': {
             \     'gitbranch': 'fugitive#head',
+            \     'cocstatus': 'coc#status',
             \   }
             \ }
 
