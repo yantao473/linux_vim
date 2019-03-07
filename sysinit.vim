@@ -76,10 +76,10 @@ function! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
         exec "!gcc -Wall % -o %<"
-        exec "!time %<"
+        exec "!time ./%<"
     elseif &filetype == 'cpp'
         exec "!g++ -Wall % -o %<"
-        exec "!time %<"
+        exec "!time ./%<"
     elseif &filetype == 'java'
         exec "!javac %"
         exec "!time java %<"
@@ -215,20 +215,6 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 "let g:ackprg = 'ag --vimgrep'
 "***************************end fzf************************"
 
-""***************************start nvim-completion-manager******************************"
-se shortmess+=c
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-au User CmSetup call cm#register_source({'name' : 'cm-css',
-            \ 'priority': 9,
-            \ 'scoping': 1,
-            \ 'scopes': ['css','scss'],
-            \ 'abbreviation': 'css',
-            \ 'word_pattern': '[\w\-]+',
-            \ 'cm_refresh_patterns':['[\w\-]+\s*:\s+'],
-            \ 'cm_refresh': {'omnifunc': 'csscomplete#CompleteCSS'},
-            \ })
-""***************************end nvim-completion-manager******************************"
-
 "***************************delimitMate start******************************"
 " for python docstring ", 特别有用
 au FileType python let b:delimitMate_nesting_quotes = ['"']
@@ -262,21 +248,6 @@ endfunction
 au BufNewFile *.php call HeaderPHP()
 "***************************autoformater end******************************"
 
-"***************************ale start******************************"
-" let g:ale_python_flake8_args = '--max-line-length=120'
-" let g:ale_linters = {
-" \ 'javascript': ['eslint'],
-" \}
-"
-" " Do not lint or fix minified files.
-" let g:ale_pattern_options = {
-" \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-" \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-" \}
-" " If you configure g:ale_pattern_options outside of vimrc, you need this.
-" let g:ale_pattern_options_enabled = 1
-"***************************ale end******************************"
-
 "***************************compile and debug start******************************"
 map <silent> <leader>rc :call C_Compile()<cr>
 map <silent> <leader>rr :call C_Run()<cr>
@@ -289,7 +260,7 @@ let g:vim_isort_map = '<C-i>'
 au BufWritePre *.py silent! Isort
 "***************************vim-isort end******************************"
 
-"***************************coc start**********************************
+"***************************coc.nvim start**********************************
 set hidden
 set updatetime=300
 set shortmess +=c
@@ -301,16 +272,11 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-let g:coc_snippet_next = '<TAB>'
-let g:coc_snippet_prev = '<S-TAB>'
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-Space> coc#refresh()
 
 " Remap keys for goto
 nmap <silent> gd <Plug>(coc-definition)
@@ -330,7 +296,7 @@ function! s:show_documentation()
 endfunction
 
 nmap <leader>rn <Plug>(coc-rename)
-"***************************coc end**********************************
+"***************************coc.nvim end**********************************
 
 "***************************plug start**********************************
 let root_path = "/usr/share/nvim/runtime/"
@@ -360,14 +326,14 @@ call plug#begin(base_path)
 Plug 'https://github.com/junegunn/vim-plug.git', {'do': function('DoPlug')}
 Plug 'tpope/vim-pathogen'
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 Plug 'scrooloose/nerdcommenter' "comment for code
 Plug 'jiangmiao/auto-pairs' " brackets
 
 " navigation
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-" Plug 'majutsushi/tagbar'
 
 " statusline
 Plug 'itchyny/lightline.vim'
