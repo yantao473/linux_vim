@@ -22,3 +22,12 @@ coc.nvim 配置：
         }
     }
 }
+
+coc 安装的扩展
+1 * coc-highlight ~/.config/coc/extensions/node_modules/coc-highlight                                                                                                       
+2 * coc-pairs ~/.config/coc/extensions/node_modules/coc-pairs
+3 * coc-snippets ~/.config/coc/extensions/node_modules/coc-snippets
+4 + coc-css ~/.config/coc/extensions/node_modules/coc-css
+5 + coc-json ~/.config/coc/extensions/node_modules/coc-json
+6 + coc-phpls ~/.config/coc/extensions/node_modules/coc-phpls
+7 + coc-pyls ~/.config/coc/extensions/node_modules/coc-pyls

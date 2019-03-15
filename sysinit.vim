@@ -343,6 +343,9 @@ Plug 'itchyny/lightline.vim'
 " snippets
 Plug 'honza/vim-snippets'
 
+" tarbar
+Plug 'liuchengxu/vista.vim'
+
 " auto complete  html/xml
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 " Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
