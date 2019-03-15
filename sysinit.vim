@@ -340,6 +340,9 @@ Plug 'itchyny/lightline.vim'
 " async syntax
 " Plug 'w0rp/ale'
 
+" snippets
+Plug 'honza/vim-snippets'
+
 " auto complete  html/xml
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 " Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
