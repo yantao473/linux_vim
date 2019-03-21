@@ -297,6 +297,12 @@ function! s:show_documentation()
 endfunction
 
 nmap <leader>rn <Plug>(coc-rename)
+
+nmap <silent> <leader>tb :Vista!!<cr>
+
+" fix coc-phpls bugs
+autocmd FileType php setl iskeyword+=$
+
 "***************************coc.nvim end**********************************
 
 "***************************plug start**********************************
