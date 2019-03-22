@@ -66,9 +66,6 @@ noremap <silent> <leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
 " switch to current dir
 map <silent> <leader>cd :cd %:p:h<cr>
 
-
-nmap <silent> <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
-
 " one key to run
 nmap <F9> :call CompileRunGcc()<CR>
 
@@ -134,8 +131,6 @@ au! BufWritePost sysinit.vim source /usr/share/nvim/sysinit.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" au FileType html,python,php,perl,c,c++,javascript,txt,vim setl shiftwidth=4
-" au FileType html,python,php,perl,c,c++,javascript,txt,vim setl tabstop=4
 au FileType html,python,php,perl,c,c++,javascript,txt,vim setl lbr
 au FileType text setl textwidth=78
 au FileType c,cpp :set cindent
@@ -172,10 +167,6 @@ map <silent> <leader>ne :NERDTree<cr>
 map <silent> <leader>nc :NERDTreeClose<cr>
 "****************************end nerd tree*************************************
 
-"***************************start js syntax highlight******************************"
-let javascript_enable_domhtmlcss = 1
-"***************************end js syntax highlight******************************"
-
 "***************************start lightline******************************"
 let g:lightline = {
             \   'active': {
@@ -192,8 +183,6 @@ let g:lightline = {
             \   }
             \ }
 
-" for buffers
-nnoremap <leader>b :ls<CR>:b<Space>
 "***************************end lightline******************************"
 
 "***************************start python******************************"
@@ -210,11 +199,22 @@ au BufNewFile *.py call HeaderPython()
 "***************************end python******************************"
 
 "***************************start fzf ************************"
-nnoremap <silent><leader>lk :Files<CR>
+nnoremap <silent><leader>sf :Files<CR>
+nnoremap <silent><leader>sb :Buffers<CR>
+nnoremap <silent><leader>sm :Marks<CR>
+nnoremap <silent><leader>sw :Windows<CR>
 " ag for fzf
 let g:ackprg = 'ag --nogroup --nocolor --column'
 "let g:ackprg = 'ag --vimgrep'
 "***************************end fzf************************"
+
+"***************************start LeaderF ************************"
+nnoremap <leader>lb :Leaderf buffer<CR>
+nnoremap <leader>lf :Leaderf function<CR>
+nnoremap <leader>ll :Leaderf line<CR>
+nnoremap <leader>lm :Leaderf mru<CR>
+nnoremap <leader>lk :Leaderf file<CR>
+"***************************end LeaderF************************"
 
 "***************************delimitMate start******************************"
 " for python docstring ", 特别有用
@@ -298,7 +298,7 @@ endfunction
 
 nmap <leader>rn <Plug>(coc-rename)
 
-nmap <silent> <leader>tb :Vista!!<cr>
+" nmap <silent> <leader>tb :Vista!!<cr>
 
 " fix coc-phpls bugs
 autocmd FileType php setl iskeyword+=$
@@ -350,7 +350,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'honza/vim-snippets'
 
 " tarbar
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 
 " auto complete  html/xml
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
@@ -358,7 +358,7 @@ Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 
 " file search
 Plug 'junegunn/fzf.vim'
-" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 " formater
 Plug 'Chiel92/vim-autoformat'
