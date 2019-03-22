@@ -198,22 +198,24 @@ au BufNewFile *.py call HeaderPython()
 
 "***************************end python******************************"
 
-"***************************start fzf ************************"
-nnoremap <silent><leader>sf :Files<CR>
-nnoremap <silent><leader>sb :Buffers<CR>
-nnoremap <silent><leader>sm :Marks<CR>
-nnoremap <silent><leader>sw :Windows<CR>
-" ag for fzf
-let g:ackprg = 'ag --nogroup --nocolor --column'
-"let g:ackprg = 'ag --vimgrep'
-"***************************end fzf************************"
-
 "***************************start LeaderF ************************"
 nnoremap <leader>lb :Leaderf buffer<CR>
 nnoremap <leader>lf :Leaderf function<CR>
 nnoremap <leader>ll :Leaderf line<CR>
 nnoremap <leader>lm :Leaderf mru<CR>
 nnoremap <leader>lk :Leaderf file<CR>
+
+" search word under cursor, the pattern is treated as regex, and enter normal mode directly
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
+" search word under cursor, the pattern is treated as regex,
+" append the result to previous search results.
+noremap <C-G> :<C-U><C-R>=printf("Leaderf! rg --append -e %s ", expand("<cword>"))<CR><CR>
+" search word under cursor literally only in current buffer
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expand("<cword>"))<CR><CR>
+" search visually selected text literally, don't quit LeaderF after accepting an entry
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#visual())<CR><CR>
+" recall last search. If the result window is closed, reopen it.
+noremap go :<C-U>Leaderf! rg --stayOpen --recall<CR>
 "***************************end LeaderF************************"
 
 "***************************delimitMate start******************************"
@@ -357,7 +359,6 @@ Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 " Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
 
 " file search
-Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 " formater
