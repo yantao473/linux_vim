@@ -171,7 +171,7 @@ map <silent> <leader>nc :NERDTreeClose<cr>
 let g:lightline = {
             \   'active': {
             \     'left':[ [ 'mode', 'paste' ],
-            \              [ 'gitbranch', 'cocstatus','readonly', 'filename', 'modified' ]
+            \              [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ]
             \     ]
             \   },
             \   'component': {
@@ -198,32 +198,12 @@ au BufNewFile *.py call HeaderPython()
 
 "***************************end python******************************"
 
-"***************************start LeaderF ************************"
-nnoremap <leader>lb :Leaderf buffer<CR>
-nnoremap <leader>lf :Leaderf function<CR>
-nnoremap <leader>ll :Leaderf line<CR>
-nnoremap <leader>lm :Leaderf mru<CR>
-nnoremap <leader>lk :Leaderf file<CR>
-
-" search word under cursor, the pattern is treated as regex, and enter normal mode directly
-noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
-" search word under cursor, the pattern is treated as regex,
-" append the result to previous search results.
-noremap <C-G> :<C-U><C-R>=printf("Leaderf! rg --append -e %s ", expand("<cword>"))<CR><CR>
-" search word under cursor literally only in current buffer
-noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expand("<cword>"))<CR><CR>
-" search visually selected text literally, don't quit LeaderF after accepting an entry
-xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#visual())<CR><CR>
-" recall last search. If the result window is closed, reopen it.
-noremap go :<C-U>Leaderf! rg --stayOpen --recall<CR>
-"***************************end LeaderF************************"
-
-"***************************delimitMate start******************************"
-" for python docstring ", 特别有用
-au FileType python let b:delimitMate_nesting_quotes = ['"']
-" 关闭某些类型文件的自动补全
-au FileType mail let b:delimitMate_autoclose = 0
-"***************************delimitMate end******************************"
+"***************************start fzf ************************"
+nnoremap <silent><leader>lf :Files<CR>
+nnoremap <silent><leader>lb :Buffers<CR>
+nnoremap <silent><leader>lt :BTags<CR>
+nnoremap <silent><Leader>rg :Rg <C-R><C-W><CR>
+"***************************end fzf************************
 
 "***************************autoformater start******************************"
 " http://astyle.sourceforge.net/astyle.html
@@ -266,7 +246,7 @@ au BufWritePre *.py silent! Isort
 "***************************coc.nvim start**********************************
 set hidden
 set updatetime=300
-set shortmess +=c
+" set shortmess +=c
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -283,24 +263,31 @@ set shortmess +=c
 
 " Remap keys for goto
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gy <plug>(coc-type-definition)
+" nmap <silent> gi <plug>(coc-implementation)
 
 " Use gh for show documentation in preview window
-nnoremap <silent> gh :call <SID>show_documentation()<CR>
+" nnoremap <silent> gh :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-    if &filetype == 'vim'
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
+" function! s:show_documentation()
+"     if &filetype == 'vim'
+"         execute 'h '.expand('<cword>')
+"     else
+"         call CocAction('doHover')
+"     endif
+" endfunction
 
 nmap <leader>rn <Plug>(coc-rename)
+nnoremap <silent> <leader>tb  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
 
-" nmap <silent> <leader>tb :Vista!!<cr>
+ " default action for next item.
+nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 
 " fix coc-phpls bugs
 autocmd FileType php setl iskeyword+=$
@@ -345,21 +332,12 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 " statusline
 Plug 'itchyny/lightline.vim'
 
-" async syntax
-" Plug 'w0rp/ale'
-
 " snippets
 Plug 'honza/vim-snippets'
 
-" tarbar
-" Plug 'liuchengxu/vista.vim'
-
-" auto complete  html/xml
-Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
-" Plug 'mattn/emmet-vim', {'for': ['html', 'xml'] }
-
 " file search
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'junegunn/fzf.vim'
 
 " formater
 Plug 'Chiel92/vim-autoformat'
