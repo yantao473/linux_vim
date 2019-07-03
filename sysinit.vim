@@ -1,8 +1,12 @@
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+
 augroup Fedora
-au!
-" RPM spec file template
-au BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
+  autocmd!
+  " RPM spec file template
+  autocmd BufNewFile *.spec silent! 0read /usr/share/nvim/template.spec
 augroup END
+
 
 """"""""""""""""""""""""""""""""""""""start config by yanqing4""""""""""""""""""""""""""
 colorscheme desert
@@ -206,14 +210,6 @@ nnoremap <silent><Leader>rg :Rg <C-R><C-W><CR>
 "***************************end fzf************************
 
 "***************************autoformater start******************************"
-" http://astyle.sourceforge.net/astyle.html
-let g:formatdef_cfamily = '"astyle --mode=c -A10 -S -f -p -k3 -W3 -j -c"'
-let g:formatters_cpp = ['cfamily']
-let g:formatters_c = ['cfamily']
-
-let g:formatdef_phpstyle = '"astyle --mode=c -A14 -xl  -C  -Y  -f -xg  -U -j -c -s4"'
-let g:formatters_php = ['phpstyle']
-
 " range format python
 let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline. ' --max-line-length=119'"
 let g:formatters_python = ['autopep8']
@@ -348,5 +344,4 @@ Plug 'tpope/vim-fugitive'
 call plug#end()
 "***************************plug end**********************************
 """"""""""""""""""""""""""""""""""""""end config by yanqing4""""""""""""""""""""""""""
-"le
 "vim: et ts=4 sw=4
