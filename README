@@ -31,3 +31,5 @@ coc 安装的扩展
 5 + coc-json ~/.config/coc/extensions/node_modules/coc-json
 6 + coc-phpls ~/.config/coc/extensions/node_modules/coc-phpls
 7 + coc-pyls ~/.config/coc/extensions/node_modules/coc-pyls
+8 + coc-html
+9 + coc-emmet

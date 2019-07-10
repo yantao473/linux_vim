@@ -318,7 +318,7 @@ call plug#begin(base_path)
 Plug 'https://github.com/junegunn/vim-plug.git', {'do': function('DoPlug')}
 Plug 'tpope/vim-pathogen'
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'scrooloose/nerdcommenter' "comment for code
 
