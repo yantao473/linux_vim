@@ -172,6 +172,7 @@ map <silent> <leader>nc :NERDTreeClose<cr>
 "****************************end nerd tree*************************************
 
 "***************************start lightline******************************"
+
 let g:lightline = {
             \   'active': {
             \     'left':[ [ 'mode', 'paste' ],
@@ -183,7 +184,7 @@ let g:lightline = {
             \   },
             \   'component_function': {
             \     'gitbranch': 'fugitive#head',
-            \     'cocstatus': 'coc#status',
+            \     'cocstatus': 'coc#status'
             \   }
             \ }
 
@@ -246,6 +247,27 @@ set shortmess +=c
 set signcolumn=yes
 set nowritebackup
 
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Remap keys for goto
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
@@ -297,7 +319,7 @@ call plug#begin(base_path)
 Plug 'https://github.com/junegunn/vim-plug.git', {'do': function('DoPlug')}
 Plug 'tpope/vim-pathogen'
 
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'scrooloose/nerdcommenter' "comment for code
 
