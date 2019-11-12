@@ -1,6 +1,3 @@
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
-
 augroup Fedora
   autocmd!
   " RPM spec file template
@@ -9,6 +6,10 @@ augroup END
 
 
 """"""""""""""""""""""""""""""""""""""start config by yanqing4""""""""""""""""""""""""""
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_skip_check = 1
+
 colorscheme desert
 
 "Enable filetype plugin
@@ -233,6 +234,12 @@ map <silent> <leader>rc :call C_Compile()<cr>
 map <silent> <leader>rr :call C_Run()<cr>
 "***************************compile and debug end******************************"
 
+"***************************golang start******************************"
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
+let g:go_def_mapping_enabled = 0
+"***************************golang end******************************"
+
 "***************************vim-isort start******************************"
 let g:vim_isort_map = '<C-i>'
 
@@ -307,19 +314,15 @@ if empty(glob(base_path))
     au VimEnter * PlugInstall
 endif
 
-function! DoPlug()
-    silent exe "!cp " . g:plug_path ."/plug.vim " . g:mvpath. '/plug.vim'
-endfunction
 
 se rtp+=g:plug_path
-
 call plug#begin(base_path)
 
 " utils
-Plug 'https://github.com/junegunn/vim-plug.git', {'do': function('DoPlug')}
+Plug 'https://github.com/junegunn/vim-plug.git'
 Plug 'tpope/vim-pathogen'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 
 Plug 'scrooloose/nerdcommenter' "comment for code
 
@@ -338,6 +341,9 @@ Plug 'junegunn/fzf.vim'
 
 " formater
 Plug 'Chiel92/vim-autoformat'
+
+" for golang
+Plug 'fatih/vim-go'
 
 " version control
 Plug 'tpope/vim-fugitive'
