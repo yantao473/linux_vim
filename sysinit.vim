@@ -88,7 +88,7 @@ function! CompileRunGcc()
     elseif &filetype == 'sh'
         :!time bash %
     elseif &filetype == 'python'
-        exec "!time python2.7 %"
+        exec "!time python3 %"
     elseif &filetype == 'php'
         exec "!/usr/bin/php %"
     elseif &filetype == 'html'
@@ -235,12 +235,15 @@ map <silent> <leader>rr :call C_Run()<cr>
 "***************************compile and debug end******************************"
 
 "***************************golang start******************************"
-let g:go_def_mode = 'gopls'
-let g:go_info_mode = 'gopls'
-let g:go_def_mapping_enabled = 0
+" let g:go_def_mode = 'gopls'
+" let g:go_info_mode = 'gopls'
+" let g:go_def_mapping_enabled = 0
 "***************************golang end******************************"
 
 "***************************vim-isort start******************************"
+let g:vim_isort_python_version = 'python3'
+let g:vim_isort_config_overrides = {
+  \ 'include_trailing_comma': 1, 'multi_line_output': 3}
 let g:vim_isort_map = '<C-i>'
 
 " 保存前时自动调用Isort
@@ -343,7 +346,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'Chiel92/vim-autoformat'
 
 " for golang
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
+
+" for python
+Plug 'fisadev/vim-isort'
 
 " version control
 Plug 'tpope/vim-fugitive'
